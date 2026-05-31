@@ -99,11 +99,11 @@ KNOWN_IDENTIFIER_WORDS = {
 }
 
 
-def schema_filename(db_id):
+def schemaFilename(db_id):
     return db_id.replace(" ", "_").replace("/", "_") + ".json"
 
 
-def read_json(path):
+def readJson(path):
     with open(path) as f:
         return json.load(f)
 
@@ -118,14 +118,14 @@ def singularize(token):
     return token
 
 
-def expand_token(token):
+def expandToken(token):
     base = singularize(token.lower())
     out = {base}
     out.update(SYNONYMS.get(base, set()))
     return out
 
 
-def split_identifier(identifier):
+def splitIdentifier(identifier):
     text = re.sub(r"([a-z])([A-Z])", r"\1 \2", str(identifier))
     raw = re.findall(r"[A-Za-z]+|\d+", text.replace("_", " ").replace("-", " "))
     tokens = []
@@ -139,21 +139,21 @@ def split_identifier(identifier):
     return tokens
 
 
-def tokenize_text(text):
+def tokenizeText(text):
     tokens = []
     for raw in re.findall(r"[A-Za-z]+|\d+", str(text).lower()):
         if singularize(raw) in STOPWORDS:
             continue
-        for token in expand_token(raw):
+        for token in expandToken(raw):
             if token and token not in STOPWORDS:
                 tokens.append(token)
     return set(tokens)
 
 
-def identifier_terms(identifier):
+def identifierTerms(identifier):
     terms = set()
-    for token in split_identifier(identifier):
-        for expanded in expand_token(token):
+    for token in splitIdentifier(identifier):
+        for expanded in expandToken(token):
             if expanded and expanded not in STOPWORDS:
                 terms.add(expanded)
     compact = re.sub(r"[^A-Za-z0-9]+", "", str(identifier)).lower()
@@ -162,9 +162,9 @@ def identifier_terms(identifier):
     return terms
 
 
-def load_schema(schemas_dir, db_id):
-    path = os.path.join(schemas_dir, schema_filename(db_id))
-    data = read_json(path)
+def loadSchema(schemas_dir, db_id):
+    path = os.path.join(schemas_dir, schemaFilename(db_id))
+    data = readJson(path)
     tables = list(data["table_names_original"])
     columns_by_table = {table: [] for table in tables}
     column_types = data.get("column_types", ["TEXT"] * len(data["column_names_original"]))
@@ -176,11 +176,11 @@ def load_schema(schemas_dir, db_id):
         columns_by_table[table].append(col)
         column_type_by_pair[(table, col)] = ctype
 
-    table_terms = {table: identifier_terms(table) for table in tables}
+    table_terms = {table: identifierTerms(table) for table in tables}
     column_terms = {}
     for table, columns in columns_by_table.items():
         for col in columns:
-            column_terms[(table, col)] = identifier_terms(col)
+            column_terms[(table, col)] = identifierTerms(col)
 
     return {
         "tables": tables,
@@ -191,16 +191,16 @@ def load_schema(schemas_dir, db_id):
     }
 
 
-def load_training_examples(path):
+def loadTrainingExamples(path):
     if not path or not os.path.exists(path):
         return []
-    data = read_json(path)
+    data = readJson(path)
     if not isinstance(data, list):
         return []
     return data
 
 
-def build_training_index(examples):
+def buildTrainingIndex(examples):
     by_db = defaultdict(list)
     table_token_counts = defaultdict(Counter)
     column_token_counts = defaultdict(Counter)
@@ -212,7 +212,7 @@ def build_training_index(examples):
         links = item.get("schema_links", {})
         if not db_id or not isinstance(links, dict):
             continue
-        tokens = tokenize_text(item.get("question", ""))
+        tokens = tokenizeText(item.get("question", ""))
         by_db[db_id].append({"tokens": tokens, "links": links})
         for table, cols in links.items():
             table_priors[db_id][table] += 1
@@ -233,7 +233,7 @@ def build_training_index(examples):
     }
 
 
-def lexical_score(question_tokens, identifier_token_set, identifier):
+def lexicalScore(question_tokens, identifier_token_set, identifier):
     if not identifier_token_set:
         return 0.0
 
@@ -263,7 +263,7 @@ def jaccard(a, b):
     return inter / len(a | b)
 
 
-def add_training_signals(db_id, question_tokens, train_index, table_scores, column_scores):
+def addTrainingSignals(db_id, question_tokens, train_index, table_scores, column_scores):
     examples = train_index["by_db"].get(db_id, [])
     nearest = []
     for ex in examples:
@@ -289,7 +289,7 @@ def add_training_signals(db_id, question_tokens, train_index, table_scores, colu
             column_scores[pair] += min(0.35, 0.06 * count)
 
 
-def choose_fallback_table(db_id, schema, train_index, table_scores):
+def chooseFallbackTable(db_id, schema, train_index, table_scores):
     if table_scores:
         return max(table_scores.items(), key=lambda kv: kv[1])[0]
     priors = train_index["table_priors"].get(db_id)
@@ -303,9 +303,9 @@ def choose_fallback_table(db_id, schema, train_index, table_scores):
     return schema["tables"][0] if schema["tables"] else None
 
 
-def predict_schema_links(question, db_id, schemas_dir, train_index):
-    schema = load_schema(schemas_dir, db_id)
-    question_tokens = tokenize_text(question)
+def predictSchemaLinks(question, db_id, schemas_dir, train_index):
+    schema = loadSchema(schemas_dir, db_id)
+    question_tokens = tokenizeText(question)
     table_scores = defaultdict(float)
     column_scores = defaultdict(float)
     table_order = {table: idx for idx, table in enumerate(schema["tables"])}
@@ -319,7 +319,7 @@ def predict_schema_links(question, db_id, schemas_dir, train_index):
     for table in schema["tables"]:
         if table.lower() == "sysdiagrams":
             continue
-        score = lexical_score(question_tokens, schema["table_terms"][table], table)
+        score = lexicalScore(question_tokens, schema["table_terms"][table], table)
         if score > 0:
             table_scores[table] += 1.25 * score
 
@@ -328,11 +328,11 @@ def predict_schema_links(question, db_id, schemas_dir, train_index):
             continue
         table_hint = table_scores.get(table, 0.0)
         for col in columns:
-            score = lexical_score(question_tokens, schema["column_terms"][(table, col)], col)
+            score = lexicalScore(question_tokens, schema["column_terms"][(table, col)], col)
             if score > 0:
                 column_scores[(table, col)] += score + min(0.35, 0.12 * table_hint)
 
-    add_training_signals(db_id, question_tokens, train_index, table_scores, column_scores)
+    addTrainingSignals(db_id, question_tokens, train_index, table_scores, column_scores)
 
     valid_columns = {
         (table, col)
@@ -371,12 +371,12 @@ def predict_schema_links(question, db_id, schemas_dir, train_index):
                 selected_tables.add(table)
 
     if not selected_tables:
-        fallback = choose_fallback_table(db_id, schema, train_index, table_scores)
+        fallback = chooseFallbackTable(db_id, schema, train_index, table_scores)
         if fallback:
             selected_tables.add(fallback)
 
     if len(selected_tables) > 3:
-        def final_table_score(table):
+        def finalTableScore(table):
             best_col = max(
                 (score for (t, _col), score in column_candidates if t == table),
                 default=0.0,
@@ -386,7 +386,7 @@ def predict_schema_links(question, db_id, schemas_dir, train_index):
         selected_tables = set(
             sorted(
                 selected_tables,
-                key=lambda t: (-final_table_score(t), table_order.get(t, 10**9)),
+                key=lambda t: (-finalTableScore(t), table_order.get(t, 10**9)),
             )[:3]
         )
 
@@ -399,7 +399,7 @@ def predict_schema_links(question, db_id, schemas_dir, train_index):
     return out
 
 
-def default_training_path():
+def defaultTrainingPath():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     candidates = [
         os.path.join(os.getcwd(), "train.json"),
@@ -416,19 +416,19 @@ def main():
     ap.add_argument("--input", required=True)
     ap.add_argument("--output", required=True)
     ap.add_argument("--schemas_dir", default="./schemas")
-    ap.add_argument("--training_data", default=default_training_path())
+    ap.add_argument("--training_data", default=defaultTrainingPath())
     args = ap.parse_args()
 
-    items = read_json(args.input)
+    items = readJson(args.input)
     if not isinstance(items, list):
         raise ValueError("--input must be a JSON list")
 
-    training_examples = load_training_examples(args.training_data)
-    train_index = build_training_index(training_examples)
+    training_examples = loadTrainingExamples(args.training_data)
+    train_index = buildTrainingIndex(training_examples)
 
     predictions = []
     for item in items:
-        links = predict_schema_links(
+        links = predictSchemaLinks(
             item.get("question", ""),
             item["db_id"],
             args.schemas_dir,

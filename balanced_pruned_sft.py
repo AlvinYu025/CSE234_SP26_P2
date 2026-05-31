@@ -42,20 +42,20 @@ def balanceRows(rows: list[dict[str, Any]], args: argparse.Namespace) -> list[di
 
 
 def prepareData(args: argparse.Namespace) -> dict[str, Path]:
-    paths = pruned_sft.paths_for(args)
-    tokenizer = sft.load_tokenizer(args)
-    train_examples = pruned_sft.read_json(ROOT / args.train_json)
-    eval_examples = pruned_sft.read_json(ROOT / args.validation_json)
-    rows_train_original = pruned_sft.build_rows(args, train_examples, tokenizer)
+    paths = pruned_sft.pathsFor(args)
+    tokenizer = sft.loadTokenizer(args)
+    train_examples = pruned_sft.readJson(ROOT / args.train_json)
+    eval_examples = pruned_sft.readJson(ROOT / args.validation_json)
+    rows_train_original = pruned_sft.buildRows(args, train_examples, tokenizer)
     rows_train = balanceRows(rows_train_original, args)
-    rows_eval = pruned_sft.build_rows(args, eval_examples, tokenizer)
+    rows_eval = pruned_sft.buildRows(args, eval_examples, tokenizer)
 
-    sft.write_jsonl(paths["train_jsonl"], rows_train)
-    sft.write_jsonl(paths["eval_jsonl"], rows_eval)
+    sft.writeJsonl(paths["train_jsonl"], rows_train)
+    sft.writeJsonl(paths["eval_jsonl"], rows_eval)
 
     train_db_counts = Counter(row["db_id"] for row in rows_train)
     original_db_counts = Counter(row["db_id"] for row in rows_train_original)
-    pruned_sft.write_json(
+    pruned_sft.writeJson(
         paths["manifest"],
         {
             "base_model": args.base_model,
@@ -85,7 +85,7 @@ def prepareData(args: argparse.Namespace) -> dict[str, Path]:
 
 
 def buildParser() -> argparse.ArgumentParser:
-    parser = pruned_sft.build_arg_parser()
+    parser = pruned_sft.buildArgParser()
     for command in ("prepare", "train"):
         sp = parser._subparsers._group_actions[0].choices[command]
         sp.add_argument(
@@ -106,18 +106,18 @@ def buildParser() -> argparse.ArgumentParser:
 
 def main() -> None:
     args = buildParser().parse_args()
-    pruned_sft.prepare_data = prepareData
+    pruned_sft.prepareData = prepareData
     if args.command in {"prepare", "train"}:
-        args.learning_rates = pruned_sft.parse_csv_numbers(args.learning_rates, float)
-        args.lora_ranks = pruned_sft.parse_csv_numbers(args.lora_ranks, int)
-        args.lora_alphas = pruned_sft.parse_csv_numbers(args.lora_alphas, int)
+        args.learning_rates = pruned_sft.parseCsvNumbers(args.learning_rates, float)
+        args.lora_ranks = pruned_sft.parseCsvNumbers(args.lora_ranks, int)
+        args.lora_alphas = pruned_sft.parseCsvNumbers(args.lora_alphas, int)
         if args.command == "prepare":
             paths = prepareData(args)
             print(f"Wrote balanced train data to {paths['train_jsonl']}")
             print(f"Wrote pruned eval data to {paths['eval_jsonl']}")
             print(f"Wrote manifest to {paths['manifest']}")
         else:
-            pruned_sft.run_train(args)
+            pruned_sft.runTrain(args)
     else:
         pruned_sft.predict(args)
 

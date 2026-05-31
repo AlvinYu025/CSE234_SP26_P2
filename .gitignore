@@ -1,13 +1,12 @@
 __pycache__/
 *.py[cod]
 *$py.class
+logs/background/*.pid
 
-logs/
 data/
 output/
 rapidfire_experiments/
 rapidfireai_sft/
 rapidfire_trainer_output/
 
-adapter/
 .DS_Store

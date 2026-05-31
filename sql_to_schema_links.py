@@ -56,7 +56,7 @@ from sqlglot.optimizer.qualify_columns import qualify_columns
 from sqlglot.schema import MappingSchema
 
 
-def load_schema(schemas_dir, db_id):
+def loadSchema(schemas_dir, db_id):
     """Load Spider-format schema and return {table: {col: type}}."""
     fname = db_id.replace(' ', '_').replace('/', '_') + '.json'
     path = os.path.join(schemas_dir, fname)
@@ -73,7 +73,7 @@ def load_schema(schemas_dir, db_id):
     return schema
 
 
-def extract_schema_links(sql, schema, dialect='tsql'):
+def extractSchemaLinks(sql, schema, dialect='tsql'):
     """Parse SQL and extract a {table: [cols]} dict, with identifiers in
     original schema casing.
 
@@ -148,8 +148,8 @@ def main():
     args = ap.parse_args()
 
     if args.sql:
-        schema = load_schema(args.schemas_dir, args.db_id)
-        links, err = extract_schema_links(args.sql, schema, args.dialect)
+        schema = loadSchema(args.schemas_dir, args.db_id)
+        links, err = extractSchemaLinks(args.sql, schema, args.dialect)
         if err:
             print(f"PARSE ERROR: {err}")
             return
@@ -165,8 +165,8 @@ def main():
         for it in items:
             db_id = it['db_id']
             if db_id not in schema_cache:
-                schema_cache[db_id] = load_schema(args.schemas_dir, db_id)
-            links, err = extract_schema_links(it['gold_sql'], schema_cache[db_id], args.dialect)
+                schema_cache[db_id] = loadSchema(args.schemas_dir, db_id)
+            links, err = extractSchemaLinks(it['gold_sql'], schema_cache[db_id], args.dialect)
             if err:
                 n_err += 1
                 links = {}

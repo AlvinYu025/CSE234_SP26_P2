@@ -58,18 +58,18 @@ os.environ.setdefault("RF_TENSORBOARD_ENABLED", "true")
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
 
-def read_json(path: Path) -> Any:
+def readJson(path: Path) -> Any:
     with path.open() as f:
         return json.load(f)
 
 
-def write_json(path: Path, payload: Any) -> None:
+def writeJson(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w") as f:
         json.dump(payload, f, indent=2)
 
 
-def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
+def writeJsonl(path: Path, rows: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w") as f:
         for row in rows:
@@ -82,12 +82,12 @@ def slugify(value: str) -> str:
     return slug or "run"
 
 
-def schema_filename(db_id: str) -> str:
+def schemaFilename(db_id: str) -> str:
     return db_id.replace(" ", "_").replace("/", "_") + ".json"
 
 
-def load_schema(schemas_dir: Path, db_id: str) -> dict[str, Any]:
-    data = read_json(schemas_dir / schema_filename(db_id))
+def loadSchema(schemas_dir: Path, db_id: str) -> dict[str, Any]:
+    data = readJson(schemas_dir / schemaFilename(db_id))
     tables = list(data["table_names_original"])
     columns_by_table = {table: [] for table in tables}
     types_by_pair: dict[tuple[str, str], str] = {}
@@ -114,7 +114,7 @@ def load_schema(schemas_dir: Path, db_id: str) -> dict[str, Any]:
     }
 
 
-def serialize_schema(schema: dict[str, Any], include_types: bool = False) -> str:
+def serializeSchema(schema: dict[str, Any], include_types: bool = False) -> str:
     lines = [f"Database: {schema['db_id']}", "Schema:"]
     for table in schema["tables"]:
         if table.lower() == "sysdiagrams":
@@ -131,7 +131,7 @@ def serialize_schema(schema: dict[str, Any], include_types: bool = False) -> str
     return "\n".join(lines)
 
 
-def build_prompt(question: str, schema_text: str) -> tuple[str, str]:
+def buildPrompt(question: str, schema_text: str) -> tuple[str, str]:
     system = (
         "You are a schema-linking model. Given a natural-language question and "
         "a database schema, identify exactly which schema tables and columns "
@@ -160,7 +160,7 @@ Question:
     return system, user
 
 
-def canonical_schema_links(
+def canonicalSchemaLinks(
     links: dict[str, Any],
     schema: dict[str, Any],
 ) -> dict[str, list[str]]:
@@ -211,7 +211,7 @@ def canonical_schema_links(
     }
 
 
-def apply_chat_template(
+def applyChatTemplate(
     tokenizer: Any,
     system: str,
     user: str,
@@ -239,7 +239,7 @@ def apply_chat_template(
     return f"System:\n{system}\n\nUser:\n{user}\n\nAssistant:\n{assistant}"
 
 
-def apply_chat_prompt_template(tokenizer: Any, system: str, user: str) -> str:
+def applyChatPromptTemplate(tokenizer: Any, system: str, user: str) -> str:
     messages = [
         {"role": "system", "content": system},
         {"role": "user", "content": user},
@@ -261,15 +261,15 @@ def apply_chat_prompt_template(tokenizer: Any, system: str, user: str) -> str:
     return f"System:\n{system}\n\nUser:\n{user}\n\nAssistant:\n"
 
 
-def build_plain_text(system: str, user: str, assistant: str) -> str:
+def buildPlainText(system: str, user: str, assistant: str) -> str:
     return f"System:\n{system}\n\nUser:\n{user}\n\nAssistant:\n{assistant}"
 
 
-def build_plain_prompt(system: str, user: str) -> str:
+def buildPlainPrompt(system: str, user: str) -> str:
     return f"System:\n{system}\n\nUser:\n{user}\n\nAssistant:\n"
 
 
-def fit_prompt_and_answer(
+def fitPromptAndAnswer(
     tokenizer: Any,
     prompt_text: str,
     answer_text: str,
@@ -296,7 +296,7 @@ def fit_prompt_and_answer(
     return prompt_text, completion_text, len(ids), was_truncated
 
 
-def load_tokenizer(args: argparse.Namespace) -> Any:
+def loadTokenizer(args: argparse.Namespace) -> Any:
     from transformers import AutoTokenizer
 
     tokenizer = AutoTokenizer.from_pretrained(
@@ -309,7 +309,7 @@ def load_tokenizer(args: argparse.Namespace) -> Any:
     return tokenizer
 
 
-def build_sft_rows(
+def buildSftRows(
     examples: list[dict[str, Any]],
     schemas_dir: Path,
     tokenizer: Any | None,
@@ -327,21 +327,21 @@ def build_sft_rows(
     for item in examples:
         db_id = item["db_id"]
         if db_id not in schema_cache:
-            schema_cache[db_id] = load_schema(schemas_dir, db_id)
+            schema_cache[db_id] = loadSchema(schemas_dir, db_id)
         schema = schema_cache[db_id]
-        schema_text = serialize_schema(schema, include_types=include_types)
-        system, user = build_prompt(item["question"], schema_text)
-        target_links = canonical_schema_links(item.get("schema_links", {}), schema)
+        schema_text = serializeSchema(schema, include_types=include_types)
+        system, user = buildPrompt(item["question"], schema_text)
+        target_links = canonicalSchemaLinks(item.get("schema_links", {}), schema)
         assistant = json.dumps(target_links, ensure_ascii=False, separators=(",", ":"))
 
         eos_token = getattr(tokenizer, "eos_token", None) if tokenizer else None
         answer_text = assistant + (eos_token or "")
         if template == "chat":
-            prompt_text = apply_chat_prompt_template(tokenizer, system, user)
+            prompt_text = applyChatPromptTemplate(tokenizer, system, user)
         else:
-            prompt_text = build_plain_prompt(system, user)
+            prompt_text = buildPlainPrompt(system, user)
 
-        prompt, completion, token_count, was_truncated = fit_prompt_and_answer(
+        prompt, completion, token_count, was_truncated = fitPromptAndAnswer(
             tokenizer,
             prompt_text,
             answer_text,
@@ -364,7 +364,7 @@ def build_sft_rows(
     return rows
 
 
-def resolve_paths(args: argparse.Namespace) -> dict[str, Path]:
+def resolvePaths(args: argparse.Namespace) -> dict[str, Path]:
     model_slug = slugify(args.base_model)
     run_name = slugify(args.run_name)
     data_dir = ROOT / args.data_dir / model_slug
@@ -385,15 +385,15 @@ def resolve_paths(args: argparse.Namespace) -> dict[str, Path]:
     }
 
 
-def prepare_data(args: argparse.Namespace) -> dict[str, Path]:
-    paths = resolve_paths(args)
-    tokenizer = load_tokenizer(args)
+def prepareData(args: argparse.Namespace) -> dict[str, Path]:
+    paths = resolvePaths(args)
+    tokenizer = loadTokenizer(args)
 
-    train_examples = read_json(ROOT / args.train_json)
-    eval_examples = read_json(ROOT / args.validation_json)
+    train_examples = readJson(ROOT / args.train_json)
+    eval_examples = readJson(ROOT / args.validation_json)
     random.Random(args.seed).shuffle(train_examples)
 
-    train_rows = build_sft_rows(
+    train_rows = buildSftRows(
         train_examples,
         ROOT / args.schemas_dir,
         tokenizer,
@@ -403,7 +403,7 @@ def prepare_data(args: argparse.Namespace) -> dict[str, Path]:
         args.prompt_keep_head_tokens,
         args.max_train_examples,
     )
-    eval_rows = build_sft_rows(
+    eval_rows = buildSftRows(
         eval_examples,
         ROOT / args.schemas_dir,
         tokenizer,
@@ -414,9 +414,9 @@ def prepare_data(args: argparse.Namespace) -> dict[str, Path]:
         args.max_eval_examples,
     )
 
-    write_jsonl(paths["train_jsonl"], train_rows)
-    write_jsonl(paths["eval_jsonl"], eval_rows)
-    write_json(
+    writeJsonl(paths["train_jsonl"], train_rows)
+    writeJsonl(paths["eval_jsonl"], eval_rows)
+    writeJson(
         paths["manifest"],
         {
             "base_model": args.base_model,
@@ -442,7 +442,7 @@ def prepare_data(args: argparse.Namespace) -> dict[str, Path]:
     return paths
 
 
-def require_sft_dependencies() -> None:
+def requireSftDependencies() -> None:
     missing = []
     for module_name in ["accelerate", "bitsandbytes", "loguru", "peft", "trl"]:
         try:
@@ -460,7 +460,7 @@ def require_sft_dependencies() -> None:
         )
 
 
-def torch_dtype_from_string(dtype_name: str) -> Any:
+def torchDtypeFromString(dtype_name: str) -> Any:
     import torch
 
     mapping = {
@@ -472,7 +472,7 @@ def torch_dtype_from_string(dtype_name: str) -> Any:
     return mapping[dtype_name]
 
 
-def create_model_fn(config_leaf: dict[str, Any]) -> tuple[Any, Any]:
+def createModelFn(config_leaf: dict[str, Any]) -> tuple[Any, Any]:
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -483,7 +483,7 @@ def create_model_fn(config_leaf: dict[str, Any]) -> tuple[Any, Any]:
 
     dtype = model_kwargs.get("torch_dtype")
     if isinstance(dtype, str) and dtype != "auto":
-        model_kwargs["torch_dtype"] = torch_dtype_from_string(dtype)
+        model_kwargs["torch_dtype"] = torchDtypeFromString(dtype)
 
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name, **tokenizer_kwargs)
     if tokenizer.pad_token_id is None:
@@ -495,8 +495,8 @@ def create_model_fn(config_leaf: dict[str, Any]) -> tuple[Any, Any]:
     return model, tokenizer
 
 
-def build_rapidfire_config(args: argparse.Namespace) -> Any:
-    require_sft_dependencies()
+def buildRapidfireConfig(args: argparse.Namespace) -> Any:
+    requireSftDependencies()
 
     from rapidfireai.automl.datatypes import List
     from rapidfireai.automl.grid_search import RFGridSearch
@@ -561,7 +561,7 @@ def build_rapidfire_config(args: argparse.Namespace) -> Any:
     return RFGridSearch(configs=[model_config], trainer_type="SFT")
 
 
-def summarize_runs(param_config: Any, seed: int) -> list[dict[str, Any]]:
+def summarizeRuns(param_config: Any, seed: int) -> list[dict[str, Any]]:
     runs = param_config.get_runs(seed=seed)
     summary = []
     for idx, run in enumerate(runs, start=1):
@@ -586,7 +586,7 @@ def summarize_runs(param_config: Any, seed: int) -> list[dict[str, Any]]:
     return summary
 
 
-def load_dataset_from_jsonl(path: Path) -> Any:
+def loadDatasetFromJsonl(path: Path) -> Any:
     from datasets import Dataset
 
     rows = []
@@ -597,14 +597,14 @@ def load_dataset_from_jsonl(path: Path) -> Any:
     return Dataset.from_list(rows)
 
 
-def run_rapidfire(args: argparse.Namespace) -> dict[str, Path]:
-    paths = prepare_data(args)
-    param_config = build_rapidfire_config(args)
-    config_summary = summarize_runs(param_config, args.seed)
-    write_json(paths["grid_config"], config_summary)
+def runRapidfire(args: argparse.Namespace) -> dict[str, Path]:
+    paths = prepareData(args)
+    param_config = buildRapidfireConfig(args)
+    config_summary = summarizeRuns(param_config, args.seed)
+    writeJson(paths["grid_config"], config_summary)
 
-    train_dataset = load_dataset_from_jsonl(paths["train_jsonl"])
-    eval_dataset = load_dataset_from_jsonl(paths["eval_jsonl"])
+    train_dataset = loadDatasetFromJsonl(paths["train_jsonl"])
+    eval_dataset = loadDatasetFromJsonl(paths["eval_jsonl"])
 
     from rapidfireai import Experiment
 
@@ -615,7 +615,7 @@ def run_rapidfire(args: argparse.Namespace) -> dict[str, Path]:
     )
     experiment.run_fit(
         param_config=param_config,
-        create_model_fn=create_model_fn,
+        createModelFn=createModelFn,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         num_chunks=args.num_chunks,
@@ -636,7 +636,7 @@ def run_rapidfire(args: argparse.Namespace) -> dict[str, Path]:
     except Exception as exc:
         print(f"Warning: could not export RapidFire runs info: {exc}")
 
-    write_json(
+    writeJson(
         paths["run_config"],
         {
             "base_model": args.base_model,
@@ -660,11 +660,11 @@ def run_rapidfire(args: argparse.Namespace) -> dict[str, Path]:
     return paths
 
 
-def parse_csv_numbers(value: str, cast: Any) -> list[Any]:
+def parseCsvNumbers(value: str, cast: Any) -> list[Any]:
     return [cast(piece.strip()) for piece in value.split(",") if piece.strip()]
 
 
-def build_arg_parser() -> argparse.ArgumentParser:
+def buildArgParser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser()
     ap.add_argument(
         "--mode",
@@ -740,28 +740,28 @@ def build_arg_parser() -> argparse.ArgumentParser:
 
 
 def main() -> None:
-    args = build_arg_parser().parse_args()
-    args.learning_rates = parse_csv_numbers(args.learning_rates, float)
-    args.lora_ranks = parse_csv_numbers(args.lora_ranks, int)
-    args.lora_alphas = parse_csv_numbers(args.lora_alphas, int)
+    args = buildArgParser().parse_args()
+    args.learning_rates = parseCsvNumbers(args.learning_rates, float)
+    args.lora_ranks = parseCsvNumbers(args.lora_ranks, int)
+    args.lora_alphas = parseCsvNumbers(args.lora_alphas, int)
 
     if args.mode == "prepare":
-        paths = prepare_data(args)
+        paths = prepareData(args)
         print(f"Wrote SFT train data to {paths['train_jsonl']}")
         print(f"Wrote SFT eval data to {paths['eval_jsonl']}")
         print(f"Wrote manifest to {paths['manifest']}")
         return
 
     if args.mode == "list-configs":
-        param_config = build_rapidfire_config(args)
-        paths = prepare_data(args)
-        grid_summary = summarize_runs(param_config, args.seed)
-        write_json(paths["grid_config"], grid_summary)
+        param_config = buildRapidfireConfig(args)
+        paths = prepareData(args)
+        grid_summary = summarizeRuns(param_config, args.seed)
+        writeJson(paths["grid_config"], grid_summary)
         print(json.dumps(grid_summary, indent=2))
         print(f"Wrote RapidFire grid summary to {paths['grid_config']}")
         return
 
-    paths = run_rapidfire(args)
+    paths = runRapidfire(args)
     print(f"RapidFire experiment directory: {paths['experiment_dir']}")
     print(f"Run metadata directory: {paths['run_dir']}")
 

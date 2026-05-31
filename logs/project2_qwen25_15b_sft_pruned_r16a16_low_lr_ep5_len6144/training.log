@@ -1,0 +1,364 @@
+2026-05-21 17:34:10 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 1.3451, 'grad_norm': 3.2803709506988525, 'learning_rate': 6.666666666666667e-05, 'entropy': 0.4448886182159185, 'num_tokens': 24403.0, 'mean_token_accuracy': 0.7059301920235157, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.0661, 'train_samples_per_second': 2.992, 'train_steps_per_second': 0.374, 'train_loss': 1.1061809592776828, 'entropy': 0.43837042851373553, 'num_tokens': 42903.0, 'mean_token_accuracy': 0.7760254722088575, 'epoch': 1.0}
+
+2026-05-21 17:34:10 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1209.40 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  76%|███████▋  | 55/72 [00:00<00:00, 503.60 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 368.70 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2657.69 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  52%|█████▏    | 53/101 [00:00<00:00, 494.23 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 410.10 examples/s]
+/home/fey006/.conda/envs/rapidfire/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+
+2026-05-21 17:37:24 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 1.3193, 'grad_norm': 3.209491014480591, 'learning_rate': 9.999999999999999e-05, 'entropy': 0.4464295972138643, 'num_tokens': 24403.0, 'mean_token_accuracy': 0.7076139770448208, 'epoch': 0.5555555555555556}
+{'train_runtime': 22.8784, 'train_samples_per_second': 3.147, 'train_steps_per_second': 0.393, 'train_loss': 1.0240351623959012, 'entropy': 0.45681572798639536, 'num_tokens': 42903.0, 'mean_token_accuracy': 0.8058469761162996, 'epoch': 1.0}
+
+2026-05-21 17:37:24 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1320.80 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  75%|███████▌  | 54/72 [00:00<00:00, 491.79 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 349.78 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2504.95 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  47%|████▋     | 47/101 [00:00<00:00, 433.00 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 476.49 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 380.71 examples/s]
+/home/fey006/.conda/envs/rapidfire/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+
+2026-05-21 17:39:12 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.585, 'grad_norm': 1.0770829916000366, 'learning_rate': 9.884934153917997e-05, 'entropy': 0.4816608641296625, 'num_tokens': 25305.0, 'mean_token_accuracy': 0.8208582818508148, 'epoch': 0.5555555555555556}
+{'train_runtime': 23.7208, 'train_samples_per_second': 3.035, 'train_steps_per_second': 0.379, 'train_loss': 0.533789661195543, 'entropy': 0.48570661805570126, 'num_tokens': 49260.0, 'mean_token_accuracy': 0.8264580760151148, 'epoch': 1.0}
+
+2026-05-21 17:39:12 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1335.80 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  64%|██████▍   | 46/72 [00:00<00:00, 421.66 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 335.31 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2634.14 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  49%|████▊     | 49/101 [00:00<00:00, 461.10 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 482.81 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 388.76 examples/s]
+
+2026-05-21 17:41:00 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.5555, 'grad_norm': 0.9857370257377625, 'learning_rate': 0.00014827401230876994, 'entropy': 0.5219238705933094, 'num_tokens': 25305.0, 'mean_token_accuracy': 0.8279648676514626, 'epoch': 0.5555555555555556}
+{'train_runtime': 23.9037, 'train_samples_per_second': 3.012, 'train_steps_per_second': 0.377, 'train_loss': 0.5019094944000244, 'entropy': 0.4865304180420935, 'num_tokens': 49260.0, 'mean_token_accuracy': 0.8354364261031151, 'epoch': 1.0}
+
+2026-05-21 17:41:00 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1318.77 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  60%|█████▉    | 43/72 [00:00<00:00, 396.79 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 322.05 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2560.98 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  49%|████▊     | 49/101 [00:00<00:00, 460.74 examples/s]Tokenizing eval dataset:  99%|█████████▉| 100/101 [00:00<00:00, 482.72 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 383.98 examples/s]
+
+2026-05-21 17:42:58 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.3579, 'grad_norm': 1.0817497968673706, 'learning_rate': 0.00014509233484495955, 'entropy': 0.43354007340967654, 'num_tokens': 25264.0, 'mean_token_accuracy': 0.865492707490921, 'epoch': 0.5}
+{'loss': 0.3646, 'grad_norm': 0.9550401568412781, 'learning_rate': 0.00014264934225997192, 'entropy': 0.36663687918335197, 'num_tokens': 48117.0, 'mean_token_accuracy': 0.8945883378386498, 'epoch': 1.0}
+{'eval_loss': 0.46426457166671753, 'eval_runtime': 7.5963, 'eval_samples_per_second': 13.296, 'eval_steps_per_second': 13.296, 'eval_entropy': 0.38955828820419786, 'eval_num_tokens': 48117.0, 'eval_mean_token_accuracy': 0.8605137609019138, 'epoch': 1.0}
+{'train_runtime': 34.1028, 'train_samples_per_second': 2.346, 'train_steps_per_second': 0.293, 'train_loss': 0.3612605452537537, 'epoch': 1.0}
+
+2026-05-21 17:42:58 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 80/80 [00:00<00:00, 1436.44 examples/s]
+Tokenizing train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Tokenizing train dataset:  68%|██████▊   | 54/80 [00:00<00:00, 483.30 examples/s]Tokenizing train dataset: 100%|██████████| 80/80 [00:00<00:00, 366.24 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2633.16 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  50%|█████     | 51/101 [00:00<00:00, 473.69 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 407.48 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 397.56 examples/s]
+
+2026-05-21 17:44:54 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.4039, 'grad_norm': 0.9124213457107544, 'learning_rate': 9.672822322997305e-05, 'entropy': 0.49469693973660467, 'num_tokens': 25264.0, 'mean_token_accuracy': 0.8539754405617714, 'epoch': 0.5}
+{'loss': 0.3929, 'grad_norm': 0.9751555323600769, 'learning_rate': 9.509956150664796e-05, 'entropy': 0.4137433424592018, 'num_tokens': 48117.0, 'mean_token_accuracy': 0.8905069917440415, 'epoch': 1.0}
+{'eval_loss': 0.4779578149318695, 'eval_runtime': 7.6064, 'eval_samples_per_second': 13.278, 'eval_steps_per_second': 13.278, 'eval_entropy': 0.4261261513917753, 'eval_num_tokens': 48117.0, 'eval_mean_token_accuracy': 0.8628664718996181, 'epoch': 1.0}
+{'train_runtime': 33.3588, 'train_samples_per_second': 2.398, 'train_steps_per_second': 0.3, 'train_loss': 0.3983684778213501, 'epoch': 1.0}
+
+2026-05-21 17:44:54 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 80/80 [00:00<00:00, 1407.35 examples/s]
+Tokenizing train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Tokenizing train dataset:  64%|██████▍   | 51/80 [00:00<00:00, 457.51 examples/s]Tokenizing train dataset: 100%|██████████| 80/80 [00:00<00:00, 351.48 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2584.45 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  49%|████▊     | 49/101 [00:00<00:00, 460.35 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 479.67 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 386.29 examples/s]
+
+2026-05-21 17:46:50 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.3202, 'grad_norm': 1.0611145496368408, 'learning_rate': 0.00013974423607181804, 'entropy': 0.3654356699436903, 'num_tokens': 23952.0, 'mean_token_accuracy': 0.8793064698576927, 'epoch': 0.5194805194805194}
+{'loss': 0.3838, 'grad_norm': 1.4922447204589844, 'learning_rate': 0.00013639686110150193, 'entropy': 0.3692941351516827, 'num_tokens': 49597.0, 'mean_token_accuracy': 0.8714487552642822, 'epoch': 1.0}
+{'eval_loss': 0.4169078767299652, 'eval_runtime': 7.5501, 'eval_samples_per_second': 13.377, 'eval_steps_per_second': 13.377, 'eval_entropy': 0.35792732851044967, 'eval_num_tokens': 49597.0, 'eval_mean_token_accuracy': 0.8697094515998764, 'epoch': 1.0}
+{'train_runtime': 32.7966, 'train_samples_per_second': 2.348, 'train_steps_per_second': 0.305, 'train_loss': 0.35200451612472533, 'epoch': 1.0}
+
+2026-05-21 17:46:50 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 77/77 [00:00<00:00, 1371.76 examples/s]
+Tokenizing train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 45/77 [00:00<00:00, 412.59 examples/s]Tokenizing train dataset: 100%|██████████| 77/77 [00:00<00:00, 344.08 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2575.70 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  49%|████▊     | 49/101 [00:00<00:00, 461.32 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 484.32 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 389.49 examples/s]
+
+2026-05-21 17:48:47 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.349, 'grad_norm': 1.148795247077942, 'learning_rate': 9.316282404787871e-05, 'entropy': 0.3956059455871582, 'num_tokens': 23952.0, 'mean_token_accuracy': 0.8824218362569809, 'epoch': 0.5194805194805194}
+{'loss': 0.3993, 'grad_norm': 1.4475443363189697, 'learning_rate': 9.093124073433463e-05, 'entropy': 0.43120620822584305, 'num_tokens': 49597.0, 'mean_token_accuracy': 0.8622929357193612, 'epoch': 1.0}
+{'eval_loss': 0.4561065435409546, 'eval_runtime': 7.7453, 'eval_samples_per_second': 13.04, 'eval_steps_per_second': 13.04, 'eval_entropy': 0.3922044088197227, 'eval_num_tokens': 49597.0, 'eval_mean_token_accuracy': 0.8567319370732449, 'epoch': 1.0}
+{'train_runtime': 33.647, 'train_samples_per_second': 2.288, 'train_steps_per_second': 0.297, 'train_loss': 0.3741481781005859, 'epoch': 1.0}
+
+2026-05-21 17:48:47 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 77/77 [00:00<00:00, 1401.31 examples/s]
+Tokenizing train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 45/77 [00:00<00:00, 416.38 examples/s]Tokenizing train dataset: 100%|██████████| 77/77 [00:00<00:00, 349.02 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2594.88 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  50%|█████     | 51/101 [00:00<00:00, 472.76 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 404.45 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 394.80 examples/s]
+
+2026-05-21 17:50:35 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.3173, 'grad_norm': 1.0384575128555298, 'learning_rate': 8.842005554284296e-05, 'entropy': 0.38706702571362256, 'num_tokens': 24403.0, 'mean_token_accuracy': 0.8830989703536034, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.1931, 'train_samples_per_second': 2.976, 'train_steps_per_second': 0.372, 'train_loss': 0.29408836364746094, 'entropy': 0.2990939925657585, 'num_tokens': 42903.0, 'mean_token_accuracy': 0.916054604575038, 'epoch': 1.0}
+
+2026-05-21 17:50:35 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1298.60 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  74%|███████▎  | 53/72 [00:00<00:00, 479.76 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 345.48 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2517.14 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  49%|████▊     | 49/101 [00:00<00:00, 451.28 examples/s]Tokenizing eval dataset:  99%|█████████▉| 100/101 [00:00<00:00, 474.92 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 379.68 examples/s]
+
+2026-05-21 17:52:21 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.2824, 'grad_norm': 0.9178061485290527, 'learning_rate': 0.00013263008331426443, 'entropy': 0.3620862254872918, 'num_tokens': 24403.0, 'mean_token_accuracy': 0.8977176547050476, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.0458, 'train_samples_per_second': 2.994, 'train_steps_per_second': 0.374, 'train_loss': 0.2621554997232225, 'entropy': 0.277154297567904, 'num_tokens': 42903.0, 'mean_token_accuracy': 0.9171365890651941, 'epoch': 1.0}
+
+2026-05-21 17:52:21 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1317.43 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  76%|███████▋  | 55/72 [00:00<00:00, 487.46 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 355.71 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2606.84 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  50%|█████     | 51/101 [00:00<00:00, 473.44 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 407.75 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 397.61 examples/s]
+
+2026-05-21 17:54:09 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.3075, 'grad_norm': 1.1061149835586548, 'learning_rate': 8.32512286056924e-05, 'entropy': 0.31197933182120324, 'num_tokens': 25305.0, 'mean_token_accuracy': 0.8924117267131806, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.4387, 'train_samples_per_second': 2.946, 'train_steps_per_second': 0.368, 'train_loss': 0.2693271239598592, 'entropy': 0.27997478377074003, 'num_tokens': 49260.0, 'mean_token_accuracy': 0.9109835550189018, 'epoch': 1.0}
+
+2026-05-21 17:54:09 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1314.89 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 44/72 [00:00<00:00, 405.28 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 325.51 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2569.74 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  50%|████▉     | 50/101 [00:00<00:00, 471.01 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 486.87 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 391.80 examples/s]
+
+2026-05-21 17:55:56 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.28, 'grad_norm': 1.0651345252990723, 'learning_rate': 0.0001248768429085386, 'entropy': 0.2795985504984856, 'num_tokens': 25305.0, 'mean_token_accuracy': 0.9074204117059708, 'epoch': 0.5555555555555556}
+{'train_runtime': 23.8361, 'train_samples_per_second': 3.021, 'train_steps_per_second': 0.378, 'train_loss': 0.237802525361379, 'entropy': 0.24939615256153047, 'num_tokens': 49260.0, 'mean_token_accuracy': 0.9294245559722185, 'epoch': 1.0}
+
+2026-05-21 17:55:56 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1318.41 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  65%|██████▌   | 47/72 [00:00<00:00, 425.51 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 335.63 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2629.48 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 482.72 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 410.18 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 400.98 examples/s]
+
+2026-05-21 17:57:54 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.1685, 'grad_norm': 0.9648013114929199, 'learning_rate': 0.00011602111185918203, 'entropy': 0.23450582269579173, 'num_tokens': 25264.0, 'mean_token_accuracy': 0.9238459840416908, 'epoch': 0.5}
+{'loss': 0.1592, 'grad_norm': 0.9916029572486877, 'learning_rate': 0.00011069605447778052, 'entropy': 0.2075150809250772, 'num_tokens': 48117.0, 'mean_token_accuracy': 0.9422776564955712, 'epoch': 1.0}
+{'eval_loss': 0.37732550501823425, 'eval_runtime': 7.5534, 'eval_samples_per_second': 13.371, 'eval_steps_per_second': 13.371, 'eval_entropy': 0.23566350119538826, 'eval_num_tokens': 48117.0, 'eval_mean_token_accuracy': 0.8887408487867601, 'epoch': 1.0}
+{'train_runtime': 34.1298, 'train_samples_per_second': 2.344, 'train_steps_per_second': 0.293, 'train_loss': 0.1638339042663574, 'epoch': 1.0}
+
+2026-05-21 17:57:54 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 80/80 [00:00<00:00, 1428.24 examples/s]
+Tokenizing train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Tokenizing train dataset:  66%|██████▋   | 53/80 [00:00<00:00, 478.22 examples/s]Tokenizing train dataset: 100%|██████████| 80/80 [00:00<00:00, 361.04 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2576.68 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  50%|████▉     | 50/101 [00:00<00:00, 470.80 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 488.85 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 393.72 examples/s]
+
+2026-05-21 17:59:52 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.2068, 'grad_norm': 0.9594194293022156, 'learning_rate': 7.734740790612136e-05, 'entropy': 0.2636505486443639, 'num_tokens': 25264.0, 'mean_token_accuracy': 0.9148037910461426, 'epoch': 0.5}
+{'loss': 0.2048, 'grad_norm': 0.8519792556762695, 'learning_rate': 7.379736965185368e-05, 'entropy': 0.2494169745594263, 'num_tokens': 48117.0, 'mean_token_accuracy': 0.9291606277227402, 'epoch': 1.0}
+{'eval_loss': 0.3903833031654358, 'eval_runtime': 7.5545, 'eval_samples_per_second': 13.369, 'eval_steps_per_second': 13.369, 'eval_entropy': 0.28261519769335736, 'eval_num_tokens': 48117.0, 'eval_mean_token_accuracy': 0.8767893007486174, 'epoch': 1.0}
+{'train_runtime': 34.4238, 'train_samples_per_second': 2.324, 'train_steps_per_second': 0.29, 'train_loss': 0.2058018684387207, 'epoch': 1.0}
+
+2026-05-21 17:59:52 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 80/80 [00:00<00:00, 1439.84 examples/s]
+Tokenizing train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Tokenizing train dataset:  69%|██████▉   | 55/80 [00:00<00:00, 495.42 examples/s]Tokenizing train dataset: 100%|██████████| 80/80 [00:00<00:00, 372.57 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2634.51 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 485.49 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 416.28 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 406.68 examples/s]
+
+2026-05-21 18:01:49 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.1325, 'grad_norm': 0.8863475322723389, 'learning_rate': 0.0001051271568489727, 'entropy': 0.18376847486943007, 'num_tokens': 23952.0, 'mean_token_accuracy': 0.9596330687403679, 'epoch': 0.5194805194805194}
+{'loss': 0.182, 'grad_norm': 1.571635127067566, 'learning_rate': 9.935246019035126e-05, 'entropy': 0.17097499040333, 'num_tokens': 49597.0, 'mean_token_accuracy': 0.9419518999151282, 'epoch': 1.0}
+{'eval_loss': 0.3911534547805786, 'eval_runtime': 7.6661, 'eval_samples_per_second': 13.175, 'eval_steps_per_second': 13.175, 'eval_entropy': 0.2116622357896649, 'eval_num_tokens': 49597.0, 'eval_mean_token_accuracy': 0.8881178014349229, 'epoch': 1.0}
+{'train_runtime': 33.9326, 'train_samples_per_second': 2.269, 'train_steps_per_second': 0.295, 'train_loss': 0.1572673201560974, 'epoch': 1.0}
+
+2026-05-21 18:01:49 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 77/77 [00:00<00:00, 1383.06 examples/s]
+Tokenizing train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Tokenizing train dataset:  58%|█████▊    | 45/77 [00:00<00:00, 411.45 examples/s]Tokenizing train dataset: 100%|██████████| 77/77 [00:00<00:00, 330.02 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2620.06 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  50%|█████     | 51/101 [00:00<00:00, 477.78 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 409.12 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 399.03 examples/s]
+
+2026-05-21 18:03:46 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.1697, 'grad_norm': 1.0147161483764648, 'learning_rate': 7.008477123264848e-05, 'entropy': 0.23861830960959196, 'num_tokens': 23952.0, 'mean_token_accuracy': 0.9493178993463516, 'epoch': 0.5194805194805194}
+{'loss': 0.2119, 'grad_norm': 1.204662799835205, 'learning_rate': 6.623497346023418e-05, 'entropy': 0.22497228462551092, 'num_tokens': 49597.0, 'mean_token_accuracy': 0.937665721854648, 'epoch': 1.0}
+{'eval_loss': 0.393716424703598, 'eval_runtime': 7.5087, 'eval_samples_per_second': 13.451, 'eval_steps_per_second': 13.451, 'eval_entropy': 0.2467774835110891, 'eval_num_tokens': 49597.0, 'eval_mean_token_accuracy': 0.8794263406555252, 'epoch': 1.0}
+{'train_runtime': 33.4903, 'train_samples_per_second': 2.299, 'train_steps_per_second': 0.299, 'train_loss': 0.19080936908721924, 'epoch': 1.0}
+
+2026-05-21 18:03:46 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 77/77 [00:00<00:00, 1380.60 examples/s]
+Tokenizing train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Tokenizing train dataset:  62%|██████▏   | 48/77 [00:00<00:00, 433.47 examples/s]Tokenizing train dataset: 100%|██████████| 77/77 [00:00<00:00, 353.02 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2565.98 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 481.04 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 407.61 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 398.44 examples/s]
+
+2026-05-21 18:05:33 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.1521, 'grad_norm': 0.9375895857810974, 'learning_rate': 6.227427435703997e-05, 'entropy': 0.21349637787789105, 'num_tokens': 24403.0, 'mean_token_accuracy': 0.9407175570726395, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.0995, 'train_samples_per_second': 2.988, 'train_steps_per_second': 0.373, 'train_loss': 0.1383986605538262, 'entropy': 0.1772512011229992, 'num_tokens': 42903.0, 'mean_token_accuracy': 0.9564800430089235, 'epoch': 1.0}
+
+2026-05-21 18:05:33 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1321.30 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  76%|███████▋  | 55/72 [00:00<00:00, 492.65 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 361.21 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2606.97 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 487.22 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 413.24 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 403.87 examples/s]
+
+2026-05-21 18:07:20 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.113, 'grad_norm': 0.8092502951622009, 'learning_rate': 9.341141153555993e-05, 'entropy': 0.1614680863916874, 'num_tokens': 24403.0, 'mean_token_accuracy': 0.9545003965497016, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.164, 'train_samples_per_second': 2.98, 'train_steps_per_second': 0.372, 'train_loss': 0.0994417667388916, 'entropy': 0.12739582633366808, 'num_tokens': 42903.0, 'mean_token_accuracy': 0.9757056906819344, 'epoch': 1.0}
+
+2026-05-21 18:07:20 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1316.19 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  76%|███████▋  | 55/72 [00:00<00:00, 488.96 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 362.53 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2592.48 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  50%|█████     | 51/101 [00:00<00:00, 468.81 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 403.74 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 393.99 examples/s]
+
+2026-05-21 18:09:07 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.159, 'grad_norm': 0.9744465947151184, 'learning_rate': 5.495227651252315e-05, 'entropy': 0.1803249995689839, 'num_tokens': 25305.0, 'mean_token_accuracy': 0.9453072339296341, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.466, 'train_samples_per_second': 2.943, 'train_steps_per_second': 0.368, 'train_loss': 0.13511409362157187, 'entropy': 0.1459609279409051, 'num_tokens': 49260.0, 'mean_token_accuracy': 0.9693253953009844, 'epoch': 1.0}
+
+2026-05-21 18:09:07 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1319.36 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  65%|██████▌   | 47/72 [00:00<00:00, 431.33 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 338.56 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2559.50 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 484.10 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 409.06 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 400.89 examples/s]
+
+2026-05-21 18:10:55 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.1141, 'grad_norm': 0.9518861174583435, 'learning_rate': 8.242841476878471e-05, 'entropy': 0.1419276797445491, 'num_tokens': 25305.0, 'mean_token_accuracy': 0.9615392133593559, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.1934, 'train_samples_per_second': 2.976, 'train_steps_per_second': 0.372, 'train_loss': 0.09395156304041545, 'entropy': 0.10956509306561202, 'num_tokens': 49260.0, 'mean_token_accuracy': 0.9774463865906, 'epoch': 1.0}
+
+2026-05-21 18:10:55 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1300.82 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  62%|██████▎   | 45/72 [00:00<00:00, 408.88 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 328.90 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2564.73 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  50%|████▉     | 50/101 [00:00<00:00, 473.71 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 402.84 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 393.44 examples/s]
+
+2026-05-21 18:12:53 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0524, 'grad_norm': 0.86070317029953, 'learning_rate': 7.128121839950831e-05, 'entropy': 0.0937587006483227, 'num_tokens': 25264.0, 'mean_token_accuracy': 0.9795829936861992, 'epoch': 0.5}
+{'loss': 0.0665, 'grad_norm': 0.7778967618942261, 'learning_rate': 6.510808714934482e-05, 'entropy': 0.0752992081688717, 'num_tokens': 48117.0, 'mean_token_accuracy': 0.9863866850733757, 'epoch': 1.0}
+{'eval_loss': 0.40157413482666016, 'eval_runtime': 7.5767, 'eval_samples_per_second': 13.33, 'eval_steps_per_second': 13.33, 'eval_entropy': 0.13293882315093192, 'eval_num_tokens': 48117.0, 'eval_mean_token_accuracy': 0.8967162972629661, 'epoch': 1.0}
+{'train_runtime': 34.3519, 'train_samples_per_second': 2.329, 'train_steps_per_second': 0.291, 'train_loss': 0.05943659543991089, 'epoch': 1.0}
+
+2026-05-21 18:12:53 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 80/80 [00:00<00:00, 1434.58 examples/s]
+Tokenizing train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Tokenizing train dataset:  68%|██████▊   | 54/80 [00:00<00:00, 483.05 examples/s]Tokenizing train dataset: 100%|██████████| 80/80 [00:00<00:00, 366.22 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2609.60 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 480.65 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 410.40 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 400.82 examples/s]
+
+2026-05-21 18:14:49 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0929, 'grad_norm': 1.1333032846450806, 'learning_rate': 4.7520812266338885e-05, 'entropy': 0.13234189664945006, 'num_tokens': 25264.0, 'mean_token_accuracy': 0.9637483149766922, 'epoch': 0.5}
+{'loss': 0.1048, 'grad_norm': 0.9749388694763184, 'learning_rate': 4.3405391432896555e-05, 'entropy': 0.11988776735961437, 'num_tokens': 48117.0, 'mean_token_accuracy': 0.9679235756397248, 'epoch': 1.0}
+{'eval_loss': 0.42693090438842773, 'eval_runtime': 7.578, 'eval_samples_per_second': 13.328, 'eval_steps_per_second': 13.328, 'eval_entropy': 0.17233020727439682, 'eval_num_tokens': 48117.0, 'eval_mean_token_accuracy': 0.8887780515274198, 'epoch': 1.0}
+{'train_runtime': 32.895, 'train_samples_per_second': 2.432, 'train_steps_per_second': 0.304, 'train_loss': 0.09883289635181428, 'epoch': 1.0}
+
+2026-05-21 18:14:49 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 80/80 [00:00<00:00, 1430.04 examples/s]
+Tokenizing train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Tokenizing train dataset:  68%|██████▊   | 54/80 [00:00<00:00, 484.65 examples/s]Tokenizing train dataset: 100%|██████████| 80/80 [00:00<00:00, 366.57 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2621.75 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 479.38 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 409.02 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 399.57 examples/s]
+
+2026-05-21 18:16:45 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0486, 'grad_norm': 1.036081075668335, 'learning_rate': 5.900252769421899e-05, 'entropy': 0.0705903644557111, 'num_tokens': 23952.0, 'mean_token_accuracy': 0.9786064609885216, 'epoch': 0.5194805194805194}
+{'loss': 0.066, 'grad_norm': 0.8095901012420654, 'learning_rate': 5.300624719616515e-05, 'entropy': 0.08110184938571341, 'num_tokens': 49597.0, 'mean_token_accuracy': 0.9793455310769983, 'epoch': 1.0}
+{'eval_loss': 0.4450465738773346, 'eval_runtime': 7.5019, 'eval_samples_per_second': 13.463, 'eval_steps_per_second': 13.463, 'eval_entropy': 0.12778905114288083, 'eval_num_tokens': 49597.0, 'eval_mean_token_accuracy': 0.8907591883498843, 'epoch': 1.0}
+{'train_runtime': 31.9716, 'train_samples_per_second': 2.408, 'train_steps_per_second': 0.313, 'train_loss': 0.05726846009492874, 'epoch': 1.0}
+
+2026-05-21 18:16:45 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 77/77 [00:00<00:00, 1387.62 examples/s]
+Tokenizing train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Tokenizing train dataset:  62%|██████▏   | 48/77 [00:00<00:00, 430.45 examples/s]Tokenizing train dataset: 100%|██████████| 77/77 [00:00<00:00, 353.28 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2589.36 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  50%|█████     | 51/101 [00:00<00:00, 475.29 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 411.19 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 400.55 examples/s]
+
+2026-05-21 18:18:42 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0798, 'grad_norm': 1.9456995725631714, 'learning_rate': 3.933501846281267e-05, 'entropy': 0.11315814205445349, 'num_tokens': 23952.0, 'mean_token_accuracy': 0.9741819262504577, 'epoch': 0.5194805194805194}
+{'loss': 0.1133, 'grad_norm': 2.7840464115142822, 'learning_rate': 3.533749813077677e-05, 'entropy': 0.11981071541840965, 'num_tokens': 49597.0, 'mean_token_accuracy': 0.9670903199427837, 'epoch': 1.0}
+{'eval_loss': 0.4312623143196106, 'eval_runtime': 7.5692, 'eval_samples_per_second': 13.344, 'eval_steps_per_second': 13.344, 'eval_entropy': 0.161091987550775, 'eval_num_tokens': 49597.0, 'eval_mean_token_accuracy': 0.8911194034142069, 'epoch': 1.0}
+{'train_runtime': 33.6452, 'train_samples_per_second': 2.289, 'train_steps_per_second': 0.297, 'train_loss': 0.09655025601387024, 'epoch': 1.0}
+
+2026-05-21 18:18:42 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 77/77 [00:00<00:00, 1379.18 examples/s]
+Tokenizing train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Tokenizing train dataset:  62%|██████▏   | 48/77 [00:00<00:00, 438.50 examples/s]Tokenizing train dataset: 100%|██████████| 77/77 [00:00<00:00, 353.94 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2591.10 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  50%|█████     | 51/101 [00:00<00:00, 472.09 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 405.48 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 395.55 examples/s]
+
+2026-05-21 18:20:29 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0721, 'grad_norm': 0.5719587802886963, 'learning_rate': 3.144013755408895e-05, 'entropy': 0.11139290439896285, 'num_tokens': 24403.0, 'mean_token_accuracy': 0.9752097800374031, 'epoch': 0.5555555555555556}
+{'train_runtime': 23.9706, 'train_samples_per_second': 3.004, 'train_steps_per_second': 0.375, 'train_loss': 0.06110189358393351, 'entropy': 0.09109785628970712, 'num_tokens': 42903.0, 'mean_token_accuracy': 0.9885348360985518, 'epoch': 1.0}
+
+2026-05-21 18:20:29 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1323.35 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  76%|███████▋  | 55/72 [00:00<00:00, 492.74 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 361.64 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2600.39 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 482.61 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 411.54 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 402.31 examples/s]
+
+2026-05-21 18:22:16 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0416, 'grad_norm': 0.6520703434944153, 'learning_rate': 4.716020633113343e-05, 'entropy': 0.07300095881801098, 'num_tokens': 24403.0, 'mean_token_accuracy': 0.9880211010575295, 'epoch': 0.5555555555555556}
+{'train_runtime': 22.7322, 'train_samples_per_second': 3.167, 'train_steps_per_second': 0.396, 'train_loss': 0.03476464003324509, 'entropy': 0.05468288641714025, 'num_tokens': 42903.0, 'mean_token_accuracy': 0.9926829487085342, 'epoch': 1.0}
+
+2026-05-21 18:22:16 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1339.18 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  76%|███████▋  | 55/72 [00:00<00:00, 492.63 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 363.34 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2612.47 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  52%|█████▏    | 53/101 [00:00<00:00, 486.91 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 405.86 examples/s]
+
+2026-05-21 18:24:03 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0831, 'grad_norm': 1.1201021671295166, 'learning_rate': 2.476172311325783e-05, 'entropy': 0.11661024251952767, 'num_tokens': 25305.0, 'mean_token_accuracy': 0.9733336180448532, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.3847, 'train_samples_per_second': 2.953, 'train_steps_per_second': 0.369, 'train_loss': 0.06926742858356899, 'entropy': 0.09375805497984402, 'num_tokens': 49260.0, 'mean_token_accuracy': 0.9822189323604107, 'epoch': 1.0}
+
+2026-05-21 18:24:03 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1330.82 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  65%|██████▌   | 47/72 [00:00<00:00, 427.29 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 336.77 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2597.81 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 482.81 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 414.02 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 403.92 examples/s]
+
+2026-05-21 18:25:50 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0381, 'grad_norm': 0.9966999888420105, 'learning_rate': 3.7142584669886735e-05, 'entropy': 0.0720689214009326, 'num_tokens': 25305.0, 'mean_token_accuracy': 0.9833444461226464, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.047, 'train_samples_per_second': 2.994, 'train_steps_per_second': 0.374, 'train_loss': 0.035510487026638456, 'entropy': 0.05212496807507705, 'num_tokens': 49260.0, 'mean_token_accuracy': 0.9907830189913511, 'epoch': 1.0}
+
+2026-05-21 18:25:50 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1326.01 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  65%|██████▌   | 47/72 [00:00<00:00, 430.48 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 342.01 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2653.26 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  52%|█████▏    | 53/101 [00:00<00:00, 491.39 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 413.33 examples/s]
+
+2026-05-21 18:27:45 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0158, 'grad_norm': 0.4195784330368042, 'learning_rate': 2.796177311448472e-05, 'entropy': 0.03579883916536346, 'num_tokens': 25264.0, 'mean_token_accuracy': 0.9959966585040092, 'epoch': 0.5}
+{'loss': 0.0237, 'grad_norm': 0.6306269764900208, 'learning_rate': 2.3298494316107564e-05, 'entropy': 0.03748587136506103, 'num_tokens': 48117.0, 'mean_token_accuracy': 0.9961249560117722, 'epoch': 1.0}
+{'eval_loss': 0.5040889382362366, 'eval_runtime': 7.483, 'eval_samples_per_second': 13.497, 'eval_steps_per_second': 13.497, 'eval_entropy': 0.10351853061808587, 'eval_num_tokens': 48117.0, 'eval_mean_token_accuracy': 0.897701642890968, 'epoch': 1.0}
+{'train_runtime': 32.395, 'train_samples_per_second': 2.47, 'train_steps_per_second': 0.309, 'train_loss': 0.01971176639199257, 'epoch': 1.0}
+
+2026-05-21 18:27:45 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 80/80 [00:00<00:00, 1476.32 examples/s]
+Tokenizing train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Tokenizing train dataset:  68%|██████▊   | 54/80 [00:00<00:00, 490.79 examples/s]Tokenizing train dataset: 100%|██████████| 80/80 [00:00<00:00, 369.58 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2595.71 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  52%|█████▏    | 53/101 [00:00<00:00, 492.18 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 409.18 examples/s]
+
+2026-05-21 18:29:41 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0374, 'grad_norm': 0.7588688135147095, 'learning_rate': 1.8641182076323148e-05, 'entropy': 0.0738052933709696, 'num_tokens': 25264.0, 'mean_token_accuracy': 0.9870507419109344, 'epoch': 0.5}
+{'loss': 0.049, 'grad_norm': 0.7834356427192688, 'learning_rate': 1.553232954407171e-05, 'entropy': 0.06997878360562027, 'num_tokens': 48117.0, 'mean_token_accuracy': 0.9891795843839646, 'epoch': 1.0}
+{'eval_loss': 0.4858889579772949, 'eval_runtime': 7.4923, 'eval_samples_per_second': 13.48, 'eval_steps_per_second': 13.48, 'eval_entropy': 0.13024201087358564, 'eval_num_tokens': 48117.0, 'eval_mean_token_accuracy': 0.8888734095167405, 'epoch': 1.0}
+{'train_runtime': 32.6076, 'train_samples_per_second': 2.453, 'train_steps_per_second': 0.307, 'train_loss': 0.04323616623878479, 'epoch': 1.0}
+
+2026-05-21 18:29:41 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 80/80 [00:00<00:00, 1440.23 examples/s]
+Tokenizing train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Tokenizing train dataset:  68%|██████▊   | 54/80 [00:00<00:00, 484.94 examples/s]Tokenizing train dataset: 100%|██████████| 80/80 [00:00<00:00, 366.24 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2618.52 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  52%|█████▏    | 53/101 [00:00<00:00, 488.42 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 401.69 examples/s]
+
+2026-05-21 18:31:37 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0213, 'grad_norm': 0.5877559781074524, 'learning_rate': 1.898838922618848e-05, 'entropy': 0.04082593639031984, 'num_tokens': 23952.0, 'mean_token_accuracy': 0.997016741335392, 'epoch': 0.5194805194805194}
+{'loss': 0.0325, 'grad_norm': 0.6815294027328491, 'learning_rate': 1.5060900232880647e-05, 'entropy': 0.046878163860103975, 'num_tokens': 49597.0, 'mean_token_accuracy': 0.9896897576950692, 'epoch': 1.0}
+{'eval_loss': 0.5079182386398315, 'eval_runtime': 7.5256, 'eval_samples_per_second': 13.421, 'eval_steps_per_second': 13.421, 'eval_entropy': 0.10011450266281124, 'eval_num_tokens': 49597.0, 'eval_mean_token_accuracy': 0.8979167796597622, 'epoch': 1.0}
+{'train_runtime': 32.1584, 'train_samples_per_second': 2.394, 'train_steps_per_second': 0.311, 'train_loss': 0.026905038952827455, 'epoch': 1.0}
+
+2026-05-21 18:31:37 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 77/77 [00:00<00:00, 1400.38 examples/s]
+Tokenizing train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Tokenizing train dataset:  62%|██████▏   | 48/77 [00:00<00:00, 432.83 examples/s]Tokenizing train dataset: 100%|██████████| 77/77 [00:00<00:00, 354.20 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2621.34 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 480.39 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 410.58 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 400.78 examples/s]
+
+2026-05-21 18:33:32 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0481, 'grad_norm': 1.4675358533859253, 'learning_rate': 1.2658926150792322e-05, 'entropy': 0.06942386278533377, 'num_tokens': 23952.0, 'mean_token_accuracy': 0.9824868321418763, 'epoch': 0.5194805194805194}
+{'loss': 0.0653, 'grad_norm': 1.0212126970291138, 'learning_rate': 1.0040600155253765e-05, 'entropy': 0.08122957119013409, 'num_tokens': 49597.0, 'mean_token_accuracy': 0.9802830928080791, 'epoch': 1.0}
+{'eval_loss': 0.493076354265213, 'eval_runtime': 7.539, 'eval_samples_per_second': 13.397, 'eval_steps_per_second': 13.397, 'eval_entropy': 0.1254565420671191, 'eval_num_tokens': 49597.0, 'eval_mean_token_accuracy': 0.8876822537714892, 'epoch': 1.0}
+{'train_runtime': 32.0648, 'train_samples_per_second': 2.401, 'train_steps_per_second': 0.312, 'train_loss': 0.05666704177856445, 'epoch': 1.0}
+
+2026-05-21 18:33:32 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 77/77 [00:00<00:00, 1386.43 examples/s]
+Tokenizing train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Tokenizing train dataset:  62%|██████▏   | 48/77 [00:00<00:00, 427.99 examples/s]Tokenizing train dataset: 100%|██████████| 77/77 [00:00<00:00, 350.77 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2581.85 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 484.51 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 410.22 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 400.72 examples/s]
+
+2026-05-21 18:35:19 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0357, 'grad_norm': 0.44943496584892273, 'learning_rate': 7.695237378953223e-06, 'entropy': 0.07039785536471754, 'num_tokens': 24403.0, 'mean_token_accuracy': 0.9864988654851914, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.235, 'train_samples_per_second': 2.971, 'train_steps_per_second': 0.371, 'train_loss': 0.028617440826363034, 'entropy': 0.05177464629377937, 'num_tokens': 42903.0, 'mean_token_accuracy': 0.9962853416800499, 'epoch': 1.0}
+
+2026-05-21 18:35:19 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1314.83 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  76%|███████▋  | 55/72 [00:00<00:00, 492.55 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 361.05 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2672.24 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  52%|█████▏    | 53/101 [00:00<00:00, 495.53 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 406.24 examples/s]
+
+2026-05-21 18:37:07 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0149, 'grad_norm': 0.3123709559440613, 'learning_rate': 1.1542856068429834e-05, 'entropy': 0.035732136410661045, 'num_tokens': 24403.0, 'mean_token_accuracy': 0.9956966698169708, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.0283, 'train_samples_per_second': 2.996, 'train_steps_per_second': 0.375, 'train_loss': 0.011759059296713935, 'entropy': 0.02573194201249862, 'num_tokens': 42903.0, 'mean_token_accuracy': 1.0, 'epoch': 1.0}
+
+2026-05-21 18:37:07 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1335.10 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  76%|███████▋  | 55/72 [00:00<00:00, 488.27 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 359.00 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2619.72 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 479.93 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 412.34 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 402.42 examples/s]
+
+2026-05-21 18:38:55 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.052, 'grad_norm': 0.6902697682380676, 'learning_rate': 4.2113336672471245e-06, 'entropy': 0.08056282585021109, 'num_tokens': 25305.0, 'mean_token_accuracy': 0.9854508891701699, 'epoch': 0.5555555555555556}
+{'train_runtime': 24.4634, 'train_samples_per_second': 2.943, 'train_steps_per_second': 0.368, 'train_loss': 0.046316825681262545, 'entropy': 0.06642889764043503, 'num_tokens': 49260.0, 'mean_token_accuracy': 0.9862593375146389, 'epoch': 1.0}
+
+2026-05-21 18:38:55 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1343.14 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  62%|██████▎   | 45/72 [00:00<00:00, 412.16 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 333.09 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2587.99 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 480.79 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 412.73 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 402.73 examples/s]
+
+2026-05-21 18:40:43 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0188, 'grad_norm': 0.43948546051979065, 'learning_rate': 6.317000500870687e-06, 'entropy': 0.044194270099978894, 'num_tokens': 25305.0, 'mean_token_accuracy': 0.9968748569488526, 'epoch': 0.5555555555555556}
+{'train_runtime': 23.3457, 'train_samples_per_second': 3.084, 'train_steps_per_second': 0.386, 'train_loss': 0.018442100948757596, 'entropy': 0.042016040824819356, 'num_tokens': 49260.0, 'mean_token_accuracy': 0.9924229569733143, 'epoch': 1.0}
+
+2026-05-21 18:40:43 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 72/72 [00:00<00:00, 1332.85 examples/s]
+Tokenizing train dataset:   0%|          | 0/72 [00:00<?, ? examples/s]Tokenizing train dataset:  64%|██████▍   | 46/72 [00:00<00:00, 420.86 examples/s]Tokenizing train dataset: 100%|██████████| 72/72 [00:00<00:00, 333.73 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2592.77 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 483.04 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 411.48 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 402.10 examples/s]
+
+2026-05-21 18:42:38 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0096, 'grad_norm': 0.5032828450202942, 'learning_rate': 2.6093317291988575e-06, 'entropy': 0.030994806153466926, 'num_tokens': 25264.0, 'mean_token_accuracy': 0.9985294118523598, 'epoch': 0.5}
+{'loss': 0.0145, 'grad_norm': 0.3145972192287445, 'learning_rate': 1.2371193845713222e-06, 'entropy': 0.030668358207913117, 'num_tokens': 48117.0, 'mean_token_accuracy': 0.9974238768219947, 'epoch': 1.0}
+{'eval_loss': 0.5251721143722534, 'eval_runtime': 7.4857, 'eval_samples_per_second': 13.492, 'eval_steps_per_second': 13.492, 'eval_entropy': 0.09744717481564547, 'eval_num_tokens': 48117.0, 'eval_mean_token_accuracy': 0.8936696642696267, 'epoch': 1.0}
+{'train_runtime': 32.7527, 'train_samples_per_second': 2.443, 'train_steps_per_second': 0.305, 'train_loss': 0.012058371677994728, 'epoch': 1.0}
+
+2026-05-21 18:42:38 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 80/80 [00:00<00:00, 1438.52 examples/s]
+Tokenizing train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Tokenizing train dataset:  68%|██████▊   | 54/80 [00:00<00:00, 483.10 examples/s]Tokenizing train dataset: 100%|██████████| 80/80 [00:00<00:00, 366.53 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2596.46 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 482.24 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 414.33 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 404.03 examples/s]
+
+2026-05-21 18:44:36 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0233, 'grad_norm': 0.6964135766029358, 'learning_rate': 1.7395544861325718e-06, 'entropy': 0.05801553427008912, 'num_tokens': 25264.0, 'mean_token_accuracy': 0.9931652262806893, 'epoch': 0.5}
+{'loss': 0.0344, 'grad_norm': 0.6619743704795837, 'learning_rate': 8.247462563808817e-07, 'entropy': 0.05479407779639587, 'num_tokens': 48117.0, 'mean_token_accuracy': 0.9939963325858117, 'epoch': 1.0}
+{'eval_loss': 0.5060078501701355, 'eval_runtime': 7.5191, 'eval_samples_per_second': 13.433, 'eval_steps_per_second': 13.433, 'eval_entropy': 0.12299360929167655, 'eval_num_tokens': 48117.0, 'eval_mean_token_accuracy': 0.8860491590924783, 'epoch': 1.0}
+{'train_runtime': 34.1761, 'train_samples_per_second': 2.341, 'train_steps_per_second': 0.293, 'train_loss': 0.028877703100442888, 'epoch': 1.0}
+
+2026-05-21 18:44:36 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 80/80 [00:00<00:00, 1430.34 examples/s]
+Tokenizing train dataset:   0%|          | 0/80 [00:00<?, ? examples/s]Tokenizing train dataset:  68%|██████▊   | 54/80 [00:00<00:00, 482.36 examples/s]Tokenizing train dataset: 100%|██████████| 80/80 [00:00<00:00, 366.18 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2638.80 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  48%|████▊     | 48/101 [00:00<00:00, 438.77 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 480.47 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 385.07 examples/s]
+
+2026-05-21 18:46:02 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0117, 'grad_norm': 0.36572733521461487, 'learning_rate': 3.6878230912414375e-07, 'entropy': 0.03174121573247248, 'num_tokens': 23952.0, 'mean_token_accuracy': 0.99921875, 'epoch': 0.5194805194805194}
+{'loss': 0.0187, 'grad_norm': 0.2710000276565552, 'learning_rate': 1.0252125564824687e-08, 'entropy': 0.04205533931963146, 'num_tokens': 49597.0, 'mean_token_accuracy': 0.9983260277155284, 'epoch': 1.0}
+{'eval_loss': 0.5229411125183105, 'eval_runtime': 7.5308, 'eval_samples_per_second': 13.412, 'eval_steps_per_second': 13.412, 'eval_entropy': 0.09821933498698296, 'eval_num_tokens': 49597.0, 'eval_mean_token_accuracy': 0.8941979709238109, 'epoch': 1.0}
+{'train_runtime': 33.4989, 'train_samples_per_second': 2.388, 'train_steps_per_second': 0.299, 'train_loss': 0.015203620493412017, 'epoch': 1.0}
+
+2026-05-21 18:46:02 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 77/77 [00:00<00:00, 1385.19 examples/s]
+Tokenizing train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Tokenizing train dataset:  61%|██████    | 47/77 [00:00<00:00, 426.70 examples/s]Tokenizing train dataset: 100%|██████████| 77/77 [00:00<00:00, 351.32 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2616.99 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 489.48 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 408.36 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 399.71 examples/s]
+
+2026-05-21 18:47:28 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | INFO | worker.py:644 | {'loss': 0.0316, 'grad_norm': 0.8627142906188965, 'learning_rate': 2.458548727494292e-07, 'entropy': 0.06211269021732733, 'num_tokens': 23952.0, 'mean_token_accuracy': 0.9933048963546753, 'epoch': 0.5194805194805194}
+{'loss': 0.0518, 'grad_norm': 0.9080435633659363, 'learning_rate': 6.834750376549792e-09, 'entropy': 0.0773080437746201, 'num_tokens': 49597.0, 'mean_token_accuracy': 0.9875954905071774, 'epoch': 1.0}
+{'eval_loss': 0.5048601627349854, 'eval_runtime': 7.5511, 'eval_samples_per_second': 13.375, 'eval_steps_per_second': 13.375, 'eval_entropy': 0.12354961123391248, 'eval_num_tokens': 49597.0, 'eval_mean_token_accuracy': 0.8859967034642059, 'epoch': 1.0}
+{'train_runtime': 33.4301, 'train_samples_per_second': 2.393, 'train_steps_per_second': 0.299, 'train_loss': 0.0416901558637619, 'epoch': 1.0}
+
+2026-05-21 18:47:28 | project2_qwen25_15b_sft_pruned_r16a16_low_lr_ep5_len6144 | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 77/77 [00:00<00:00, 1386.48 examples/s]
+Tokenizing train dataset:   0%|          | 0/77 [00:00<?, ? examples/s]Tokenizing train dataset:  62%|██████▏   | 48/77 [00:00<00:00, 429.10 examples/s]Tokenizing train dataset: 100%|██████████| 77/77 [00:00<00:00, 351.85 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 101/101 [00:00<00:00, 2596.93 examples/s]
+Tokenizing eval dataset:   0%|          | 0/101 [00:00<?, ? examples/s]Tokenizing eval dataset:  51%|█████▏    | 52/101 [00:00<00:00, 477.77 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 408.81 examples/s]Tokenizing eval dataset: 100%|██████████| 101/101 [00:00<00:00, 399.34 examples/s]
+

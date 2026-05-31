@@ -115,12 +115,12 @@ KNOWN_IDENTIFIER_WORDS = {
 }
 
 
-def read_json(path: str | Path) -> Any:
+def readJson(path: str | Path) -> Any:
     with Path(path).open() as f:
         return json.load(f)
 
 
-def write_json(path: str | Path, payload: Any) -> None:
+def writeJson(path: str | Path, payload: Any) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w") as f:
@@ -137,14 +137,14 @@ def singularize(token: str) -> str:
     return token
 
 
-def expand_token(token: str) -> set[str]:
+def expandToken(token: str) -> set[str]:
     base = singularize(token.lower())
     out = {base}
     out.update(SYNONYMS.get(base, set()))
     return out
 
 
-def split_identifier(identifier: str) -> list[str]:
+def splitIdentifier(identifier: str) -> list[str]:
     text = re.sub(r"([a-z])([A-Z])", r"\1 \2", str(identifier))
     raw = re.findall(r"[A-Za-z]+|\d+", text.replace("_", " ").replace("-", " "))
     tokens = []
@@ -158,21 +158,21 @@ def split_identifier(identifier: str) -> list[str]:
     return tokens
 
 
-def tokenize_text(text: str) -> set[str]:
+def tokenizeText(text: str) -> set[str]:
     tokens = set()
     for raw in re.findall(r"[A-Za-z]+|\d+", str(text).lower()):
         if singularize(raw) in STOPWORDS:
             continue
-        for token in expand_token(raw):
+        for token in expandToken(raw):
             if token and token not in STOPWORDS:
                 tokens.add(token)
     return tokens
 
 
-def identifier_terms(identifier: str) -> set[str]:
+def identifierTerms(identifier: str) -> set[str]:
     terms = set()
-    for token in split_identifier(identifier):
-        for expanded in expand_token(token):
+    for token in splitIdentifier(identifier):
+        for expanded in expandToken(token):
             if expanded and expanded not in STOPWORDS:
                 terms.add(expanded)
     compact = re.sub(r"[^A-Za-z0-9]+", "", str(identifier)).lower()
@@ -181,7 +181,7 @@ def identifier_terms(identifier: str) -> set[str]:
     return terms
 
 
-def lexical_score(question_tokens: set[str], identifier_token_set: set[str], identifier: str) -> float:
+def lexicalScore(question_tokens: set[str], identifier_token_set: set[str], identifier: str) -> float:
     if not identifier_token_set:
         return 0.0
     overlap = question_tokens & identifier_token_set
@@ -198,18 +198,18 @@ def lexical_score(question_tokens: set[str], identifier_token_set: set[str], ide
     return score
 
 
-def load_schema_with_terms(schemas_dir: str | Path, db_id: str) -> dict[str, Any]:
-    schema = sft.load_schema(Path(schemas_dir), db_id)
-    schema["table_terms"] = {table: identifier_terms(table) for table in schema["tables"]}
+def loadSchemaWithTerms(schemas_dir: str | Path, db_id: str) -> dict[str, Any]:
+    schema = sft.loadSchema(Path(schemas_dir), db_id)
+    schema["table_terms"] = {table: identifierTerms(table) for table in schema["tables"]}
     schema["column_terms"] = {
-        (table, column): identifier_terms(column)
+        (table, column): identifierTerms(column)
         for table in schema["tables"]
         for column in schema["columns_by_table"][table]
     }
     return schema
 
 
-def build_training_index(examples: list[dict[str, Any]]) -> dict[str, Any]:
+def buildTrainingIndex(examples: list[dict[str, Any]]) -> dict[str, Any]:
     by_db = defaultdict(list)
     table_token_counts = defaultdict(Counter)
     column_token_counts = defaultdict(Counter)
@@ -220,7 +220,7 @@ def build_training_index(examples: list[dict[str, Any]]) -> dict[str, Any]:
         links = item.get("schema_links", {})
         if not db_id or not isinstance(links, dict):
             continue
-        tokens = tokenize_text(item.get("question", ""))
+        tokens = tokenizeText(item.get("question", ""))
         by_db[db_id].append({"tokens": tokens, "links": links})
         for table, cols in links.items():
             table_priors[db_id][table] += 1
@@ -242,7 +242,7 @@ def build_training_index(examples: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def add_training_signals(
+def addTrainingSignals(
     db_id: str,
     question_tokens: set[str],
     train_index: dict[str, Any],
@@ -256,7 +256,7 @@ def add_training_signals(
             column_scores[pair] += min(0.35, 0.06 * count)
 
 
-def prune_schema(
+def pruneSchema(
     question: str,
     db_id: str,
     schema: dict[str, Any],
@@ -267,7 +267,7 @@ def prune_schema(
     include_all_selected_table_columns: bool = False,
     force_links: dict[str, list[str]] | None = None,
 ) -> dict[str, Any]:
-    question_tokens = tokenize_text(question)
+    question_tokens = tokenizeText(question)
     table_scores: defaultdict[str, float] = defaultdict(float)
     column_scores: defaultdict[tuple[str, str], float] = defaultdict(float)
     table_order = {table: idx for idx, table in enumerate(schema["tables"])}
@@ -280,7 +280,7 @@ def prune_schema(
     for table in schema["tables"]:
         if table.lower() == "sysdiagrams":
             continue
-        score = lexical_score(question_tokens, schema["table_terms"][table], table)
+        score = lexicalScore(question_tokens, schema["table_terms"][table], table)
         if score > 0:
             table_scores[table] += 1.25 * score
 
@@ -289,11 +289,11 @@ def prune_schema(
             continue
         table_hint = table_scores.get(table, 0.0)
         for column in columns:
-            score = lexical_score(question_tokens, schema["column_terms"][(table, column)], column)
+            score = lexicalScore(question_tokens, schema["column_terms"][(table, column)], column)
             if score > 0:
                 column_scores[(table, column)] += score + min(0.35, 0.12 * table_hint)
 
-    add_training_signals(db_id, question_tokens, train_index, table_scores, column_scores)
+    addTrainingSignals(db_id, question_tokens, train_index, table_scores, column_scores)
 
     table_candidates = sorted(
         table_scores.items(),
@@ -343,7 +343,7 @@ def prune_schema(
     }
 
 
-def serialize_pruned_schema(schema: dict[str, Any]) -> str:
+def serializePrunedSchema(schema: dict[str, Any]) -> str:
     lines = [f"Database: {schema['db_id']}", "Schema:"]
     for table in schema["tables"]:
         columns = schema["columns_by_table"].get(table, [])
@@ -351,17 +351,17 @@ def serialize_pruned_schema(schema: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
-def build_rows(args: argparse.Namespace, examples: list[dict[str, Any]], tokenizer: Any) -> list[dict[str, Any]]:
+def buildRows(args: argparse.Namespace, examples: list[dict[str, Any]], tokenizer: Any) -> list[dict[str, Any]]:
     schema_cache = {}
-    train_index = build_training_index(read_json(ROOT / args.train_json))
+    train_index = buildTrainingIndex(readJson(ROOT / args.train_json))
     rows = []
     for item in examples:
         db_id = item["db_id"]
         if db_id not in schema_cache:
-            schema_cache[db_id] = load_schema_with_terms(ROOT / args.schemas_dir, db_id)
+            schema_cache[db_id] = loadSchemaWithTerms(ROOT / args.schemas_dir, db_id)
         full_schema = schema_cache[db_id]
-        target_links = sft.canonical_schema_links(item.get("schema_links", {}), full_schema)
-        pruned = prune_schema(
+        target_links = sft.canonicalSchemaLinks(item.get("schema_links", {}), full_schema)
+        pruned = pruneSchema(
             item.get("question", ""),
             db_id,
             full_schema,
@@ -372,12 +372,12 @@ def build_rows(args: argparse.Namespace, examples: list[dict[str, Any]], tokeniz
             args.include_all_selected_table_columns,
             force_links=target_links,
         )
-        schema_text = serialize_pruned_schema(pruned)
-        system, user = sft.build_prompt(item.get("question", ""), schema_text)
+        schema_text = serializePrunedSchema(pruned)
+        system, user = sft.buildPrompt(item.get("question", ""), schema_text)
         assistant = json.dumps(target_links, ensure_ascii=False, separators=(",", ":"))
         answer_text = assistant + (getattr(tokenizer, "eos_token", None) or "")
-        prompt_text = sft.apply_chat_prompt_template(tokenizer, system, user)
-        prompt, completion, token_count, was_truncated = sft.fit_prompt_and_answer(
+        prompt_text = sft.applyChatPromptTemplate(tokenizer, system, user)
+        prompt, completion, token_count, was_truncated = sft.fitPromptAndAnswer(
             tokenizer,
             prompt_text,
             answer_text,
@@ -401,7 +401,7 @@ def build_rows(args: argparse.Namespace, examples: list[dict[str, Any]], tokeniz
     return rows
 
 
-def paths_for(args: argparse.Namespace) -> dict[str, Path]:
+def pathsFor(args: argparse.Namespace) -> dict[str, Path]:
     model_slug = sft.slugify(args.base_model)
     run_name = sft.slugify(args.run_name)
     data_dir = ROOT / args.data_dir / model_slug / run_name
@@ -420,16 +420,16 @@ def paths_for(args: argparse.Namespace) -> dict[str, Path]:
     }
 
 
-def prepare_data(args: argparse.Namespace) -> dict[str, Path]:
-    paths = paths_for(args)
-    tokenizer = sft.load_tokenizer(args)
-    train_examples = read_json(ROOT / args.train_json)
-    eval_examples = read_json(ROOT / args.validation_json)
-    rows_train = build_rows(args, train_examples, tokenizer)
-    rows_eval = build_rows(args, eval_examples, tokenizer)
-    sft.write_jsonl(paths["train_jsonl"], rows_train)
-    sft.write_jsonl(paths["eval_jsonl"], rows_eval)
-    write_json(
+def prepareData(args: argparse.Namespace) -> dict[str, Path]:
+    paths = pathsFor(args)
+    tokenizer = sft.loadTokenizer(args)
+    train_examples = readJson(ROOT / args.train_json)
+    eval_examples = readJson(ROOT / args.validation_json)
+    rows_train = buildRows(args, train_examples, tokenizer)
+    rows_eval = buildRows(args, eval_examples, tokenizer)
+    sft.writeJsonl(paths["train_jsonl"], rows_train)
+    sft.writeJsonl(paths["eval_jsonl"], rows_eval)
+    writeJson(
         paths["manifest"],
         {
             "base_model": args.base_model,
@@ -453,13 +453,13 @@ def prepare_data(args: argparse.Namespace) -> dict[str, Path]:
     return paths
 
 
-def run_train(args: argparse.Namespace) -> None:
-    paths = prepare_data(args)
-    param_config = sft.build_rapidfire_config(args)
-    grid_summary = sft.summarize_runs(param_config, args.seed)
-    write_json(paths["grid_config"], grid_summary)
-    train_dataset = sft.load_dataset_from_jsonl(paths["train_jsonl"])
-    eval_dataset = sft.load_dataset_from_jsonl(paths["eval_jsonl"])
+def runTrain(args: argparse.Namespace) -> None:
+    paths = prepareData(args)
+    param_config = sft.buildRapidfireConfig(args)
+    grid_summary = sft.summarizeRuns(param_config, args.seed)
+    writeJson(paths["grid_config"], grid_summary)
+    train_dataset = sft.loadDatasetFromJsonl(paths["train_jsonl"])
+    eval_dataset = sft.loadDatasetFromJsonl(paths["eval_jsonl"])
 
     from rapidfireai import Experiment
 
@@ -470,7 +470,7 @@ def run_train(args: argparse.Namespace) -> None:
     )
     experiment.run_fit(
         param_config=param_config,
-        create_model_fn=sft.create_model_fn,
+        createModelFn=sft.createModelFn,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         num_chunks=args.num_chunks,
@@ -480,7 +480,7 @@ def run_train(args: argparse.Namespace) -> None:
     paths["run_dir"].mkdir(parents=True, exist_ok=True)
     experiment.get_results().to_csv(paths["results"], index=False)
     experiment.get_runs_info().to_csv(paths["runs_info"], index=False)
-    write_json(
+    writeJson(
         paths["run_config"],
         {
             "run_name": args.run_name,
@@ -499,7 +499,7 @@ def run_train(args: argparse.Namespace) -> None:
     print(f"Run metadata directory: {paths['run_dir']}")
 
 
-def load_adapter(args: argparse.Namespace):
+def loadAdapter(args: argparse.Namespace):
     import torch
     from peft import PeftModel
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -524,9 +524,9 @@ def load_adapter(args: argparse.Namespace):
 
 
 def predict(args: argparse.Namespace) -> Path:
-    model, tokenizer, device, torch = load_adapter(args)
-    items = read_json(args.input)
-    train_index = build_training_index(read_json(ROOT / args.train_json))
+    model, tokenizer, device, torch = loadAdapter(args)
+    items = readJson(args.input)
+    train_index = buildTrainingIndex(readJson(ROOT / args.train_json))
     schema_cache = {}
     predictions = []
     raw_rows = []
@@ -535,9 +535,9 @@ def predict(args: argparse.Namespace) -> Path:
     for idx, item in enumerate(items, start=1):
         db_id = item["db_id"]
         if db_id not in schema_cache:
-            schema_cache[db_id] = load_schema_with_terms(ROOT / args.schemas_dir, db_id)
+            schema_cache[db_id] = loadSchemaWithTerms(ROOT / args.schemas_dir, db_id)
         full_schema = schema_cache[db_id]
-        pruned = prune_schema(
+        pruned = pruneSchema(
             item.get("question", ""),
             db_id,
             full_schema,
@@ -547,12 +547,12 @@ def predict(args: argparse.Namespace) -> Path:
             args.max_columns_per_table,
             args.include_all_selected_table_columns,
         )
-        schema_text = serialize_pruned_schema(pruned)
-        system, user = sft.build_prompt(item.get("question", ""), schema_text)
-        prompt = baseline.apply_chat_template(tokenizer, system, user)
-        raw_text = baseline.generate_one(model, tokenizer, device, torch, prompt, args)
-        raw_links = baseline.try_parse_mapping(raw_text)
-        links = baseline.filter_schema_links(raw_links, full_schema)
+        schema_text = serializePrunedSchema(pruned)
+        system, user = sft.buildPrompt(item.get("question", ""), schema_text)
+        prompt = baseline.applyChatTemplate(tokenizer, system, user)
+        raw_text = baseline.generateOne(model, tokenizer, device, torch, prompt, args)
+        raw_links = baseline.tryParseMapping(raw_text)
+        links = baseline.filterSchemaLinks(raw_links, full_schema)
         predictions.append({"question_id": item["question_id"], "schema_links": links})
         raw_rows.append(
             {
@@ -567,8 +567,8 @@ def predict(args: argparse.Namespace) -> Path:
         )
         print(f"[{idx}/{len(items)}] q{item['question_id']} {db_id}", file=sys.stderr)
 
-    write_json(output, predictions)
-    write_json(output.with_name("raw_generations.json"), raw_rows)
+    writeJson(output, predictions)
+    writeJson(output.with_name("raw_generations.json"), raw_rows)
     if args.gold:
         per_question = output.with_name("per_question.csv")
         cmd = [
@@ -596,15 +596,15 @@ def predict(args: argparse.Namespace) -> Path:
             numeric = re.match(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)", value.strip())
             if numeric:
                 score[key] = float(numeric.group(0))
-        write_json(output.with_name("score.json"), score)
+        writeJson(output.with_name("score.json"), score)
     return output
 
 
-def parse_csv_numbers(value: str, cast: Any) -> list[Any]:
+def parseCsvNumbers(value: str, cast: Any) -> list[Any]:
     return [cast(piece.strip()) for piece in value.split(",") if piece.strip()]
 
 
-def build_arg_parser() -> argparse.ArgumentParser:
+def buildArgParser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="command", required=True)
     for name in ("prepare", "train", "predict"):
@@ -669,18 +669,18 @@ def build_arg_parser() -> argparse.ArgumentParser:
 
 
 def main() -> None:
-    args = build_arg_parser().parse_args()
+    args = buildArgParser().parse_args()
     if args.command in {"prepare", "train"}:
-        args.learning_rates = parse_csv_numbers(args.learning_rates, float)
-        args.lora_ranks = parse_csv_numbers(args.lora_ranks, int)
-        args.lora_alphas = parse_csv_numbers(args.lora_alphas, int)
+        args.learning_rates = parseCsvNumbers(args.learning_rates, float)
+        args.lora_ranks = parseCsvNumbers(args.lora_ranks, int)
+        args.lora_alphas = parseCsvNumbers(args.lora_alphas, int)
         if args.command == "prepare":
-            paths = prepare_data(args)
+            paths = prepareData(args)
             print(f"Wrote pruned train data to {paths['train_jsonl']}")
             print(f"Wrote pruned eval data to {paths['eval_jsonl']}")
             print(f"Wrote manifest to {paths['manifest']}")
         else:
-            run_train(args)
+            runTrain(args)
     else:
         predict(args)
 

@@ -1,0 +1,104 @@
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | experiment | INFO | experiment.py:104 | The previously running experiment project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep4_len6144 was forcibly ended. Created a new experiment 'project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144' with Experiment ID: 20 and Metric Experiment ID: project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 at /home/fey006/Project2/rapidfire_experiments/project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | experiment | INFO | experiment.py:106 | Running RapidFire AI version 0.15.2
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:67 | Found 1 workers/GPUs.
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | WARNING | metric_rfmetric_manager.py:57 | Failed to initialize MLflowMetricLogger: MLflow server not available at http://127.0.0.1:8852. MLflow logging will be disabled. MLflow logging is disabled.
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | INFO | metric_rfmetric_manager.py:60 | Initialized TensorBoardMetricLogger: rf_tensorboard
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:95 | Controller initialized
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:594 | Set experiment task to Create Models.
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:607 | Saved datasets to /home/fey006/Project2/rapidfire_experiments/project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144/datasets.dill
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | INFO | controller.py:613 | Set seed to 42
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:200 | Populated MetricLogger with model config info for run 1.
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | INFO | controller.py:220 | Created 1 runs - 
+{   1: {   'model_kwargs.local_files_only': False,
+           'model_kwargs.trust_remote_code': False,
+           'model_name': 'Qwen/Qwen2.5-1.5B-Instruct',
+           'model_type': 'causal_lm',
+           'num_gpus': 1,
+           'peft_params.bias': 'none',
+           'peft_params.lora_alpha': 16,
+           'peft_params.lora_dropout': 0.05,
+           'peft_params.r': 16,
+           'peft_params.target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'],
+           'tokenizer': 'Qwen/Qwen2.5-1.5B-Instruct',
+           'tokenizer_kwargs.local_files_only': False,
+           'tokenizer_kwargs.trust_remote_code': False,
+           'tokenizer_kwargs.use_fast': True,
+           'trainer_type': 'SFT',
+           'training_args.assistant_only_loss': False,
+           'training_args.bf16': True,
+           'training_args.completion_only_loss': True,
+           'training_args.dataset_text_field': 'text',
+           'training_args.eval_steps': 10,
+           'training_args.eval_strategy': 'steps',
+           'training_args.fp16': False,
+           'training_args.gradient_accumulation_steps': 8,
+           'training_args.gradient_checkpointing': True,
+           'training_args.learning_rate': 0.0002,
+           'training_args.logging_steps': 5,
+           'training_args.lr_scheduler_type': 'cosine',
+           'training_args.max_length': 6144,
+           'training_args.num_train_epochs': 3.0,
+           'training_args.packing': False,
+           'training_args.per_device_eval_batch_size': 1,
+           'training_args.per_device_train_batch_size': 1,
+           'training_args.report_to': 'none',
+           'training_args.warmup_ratio': 0.03}}
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:223 | Got 1 runs for Initial.
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:227 | Completed creating models.
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:625 | Created models.
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:631 | Set experiment task to Training and Validation.
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_manager | DEBUG | worker_manager.py:115 | Creating 1 worker processes...
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_manager | DEBUG | worker_manager.py:121 | Starting worker processes in process group 20808
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_manager | DEBUG | worker_manager.py:149 | Started Worker 0 with PID 20960
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_manager | INFO | worker_manager.py:156 | Started 1 worker processes successfully
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:637 | Created 1 workers.
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | INFO | controller.py:659 | Starting Training and Validation
+2026-05-21 21:45:54 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 0
+2026-05-21 21:46:06 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:157 | Worker 0 initialized with PID 20960
+2026-05-21 21:46:06 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | WARNING | metric_rfmetric_manager.py:57 | Failed to initialize MLflowMetricLogger: MLflow server not available at http://127.0.0.1:8852. MLflow logging will be disabled. MLflow logging is disabled.
+2026-05-21 21:46:06 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | INFO | metric_rfmetric_manager.py:60 | Initialized TensorBoardMetricLogger: rf_tensorboard
+2026-05-21 21:46:06 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:192 | Loaded datasets
+2026-05-21 21:46:06 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-21 21:46:06 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 0
+2026-05-21 21:46:51 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker-0-shm | DEBUG | shm_manager.py:348 | Saved base_model for run Qwen/Qwen2.5-1.5B-Instruct
+2026-05-21 21:47:13 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 0
+2026-05-21 21:52:20 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:0 in-place, 7 new
+2026-05-21 21:52:20 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 0
+2026-05-21 21:52:21 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 0 on workers (0,)
+2026-05-21 21:52:21 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | INFO | controller.py:717 | Run 1 completed steps - 51/153
+2026-05-21 21:52:21 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | INFO | controller.py:773 | Run 1 has completed epoch (1/1 chunks)
+2026-05-21 21:52:21 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 0
+2026-05-21 21:52:22 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-21 21:52:22 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 0
+2026-05-21 21:52:57 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 0
+2026-05-21 21:56:35 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker-0-shm | DEBUG | shm_manager.py:445 | Checkpoint update:1568 in-place, 0 new
+2026-05-21 21:56:35 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:473 | Saved checkpoint to shared memory for run 1 on chunk 0
+2026-05-21 21:56:37 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 0 on workers (0,)
+2026-05-21 21:56:37 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | INFO | controller.py:717 | Run 1 completed steps - 102/153
+2026-05-21 21:56:37 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | INFO | controller.py:773 | Run 1 has completed epoch (1/1 chunks)
+2026-05-21 21:56:37 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:886 | Scheduled run 1 on workers (0,) for chunk 0
+2026-05-21 21:56:37 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:667 | Received task WorkerTask.TRAIN_VAL for run 1
+2026-05-21 21:56:37 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:205 | Received run_fit on worker for run 1 with chunk 0
+2026-05-21 21:57:12 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:378 | Beginning training for run 1 on chunk 0
+2026-05-21 22:00:16 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:453 | Saved final checkpoint to disk for run 1 on chunk 0
+2026-05-21 22:00:17 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:714 | Completed task: run 1, chunk 0 on workers (0,)
+2026-05-21 22:00:17 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | INFO | controller.py:717 | Run 1 completed steps - 153/153
+2026-05-21 22:00:17 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | INFO | controller.py:760 | Run 1 has completed all its epochs - steps 153/153
+2026-05-21 22:00:17 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | INFO | controller.py:848 | Scheduler indicates all runs have completed all chunks
+2026-05-21 22:00:17 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | controller | DEBUG | controller.py:904 | Set experiment task to Idle.
+2026-05-21 22:00:17 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_manager | DEBUG | worker_manager.py:163 | WorkerManager shutdown initiated...
+2026-05-21 22:00:17 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_manager | DEBUG | worker_manager.py:167 | Signaling graceful shutdown...
+2026-05-21 22:00:18 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:712 | Worker 0 shutdown requested
+2026-05-21 22:00:18 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | INFO | worker_manager.py:50 | Worker 0 process exiting
+2026-05-21 22:00:18 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_0 | DEBUG | worker.py:712 | Worker 0 shutdown requested
+2026-05-21 22:00:19 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_manager | DEBUG | worker_manager.py:186 | All workers shutdown gracefully
+2026-05-21 22:00:19 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_manager | DEBUG | worker_manager.py:163 | WorkerManager shutdown initiated...
+2026-05-21 22:00:19 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_manager | DEBUG | worker_manager.py:167 | Signaling graceful shutdown...
+2026-05-21 22:00:19 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | worker_manager | DEBUG | worker_manager.py:186 | All workers shutdown gracefully
+2026-05-21 22:00:20 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | experiment | WARNING | metric_rfmetric_manager.py:57 | Failed to initialize MLflowMetricLogger: MLflow server not available at http://127.0.0.1:8852. MLflow logging will be disabled. MLflow logging is disabled.
+2026-05-21 22:00:20 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | experiment | INFO | metric_rfmetric_manager.py:60 | Initialized TensorBoardMetricLogger: rf_tensorboard
+2026-05-21 22:03:25 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | DEBUG | experiment_utils.py:271 | Reset experiment states and set current experiment task to idle
+2026-05-21 22:03:25 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | WARNING | metric_rfmetric_manager.py:57 | Failed to initialize MLflowMetricLogger: MLflow server not available at http://127.0.0.1:8852. MLflow logging will be disabled. MLflow logging is disabled.
+2026-05-21 22:03:25 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | INFO | metric_rfmetric_manager.py:60 | Initialized TensorBoardMetricLogger: rf_tensorboard
+2026-05-21 22:03:25 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | INFO | metric_tensorboard_manager.py:172 | No active TensorBoard runs to clear
+2026-05-21 22:03:25 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 | INFO | experiment_utils.py:240 | Experiment project2_qwen25_15b_sft_pruned_dbbal18_r16a16_ep3_len6144 ended

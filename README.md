@@ -1,27 +1,31 @@
-# CSE234 Project 2
+# CSE/DSC 234 Project 2
 
-Schema linking for natural language questions over database schemas.
+Schema linking for natural-language questions over database schemas.
 
-## Run Inference
+The submitted inference path is `main.py`. It loads a public Qwen2.5-Coder
+1.5B base model, attaches the local LoRA adapter in `adapter/`, prunes the
+schema prompt, generates JSON, and filters identifiers against the schema.
+
+## Run
 
 ```bash
-python main.py \
-  --input validation_input.json \
-  --output predictions.json \
-  --schemas_dir schemas
+python3 main.py --input validation_input.json --output predictions.json
 ```
 
-For local validation:
+Optional local scoring:
 
 ```bash
-python main.py \
+python3 main.py \
   --input validation_input.json \
   --output predictions.json \
-  --schemas_dir schemas \
   --gold validation_gold_schema_links.json
 ```
 
-`main.py` writes a list of predictions in this format:
+`main.py` expects schemas at `./schemas/` and loads `./adapter/` by default.
+The base model is downloaded through `transformers`; the adapter is committed
+in this repo.
+
+## Output Format
 
 ```json
 [
@@ -34,72 +38,39 @@ python main.py \
 ]
 ```
 
-## Method
+If a table is referenced without a specific column, it is emitted with an empty
+list.
 
-The final method uses:
+## Final Setting
 
-- `Qwen/Qwen2.5-1.5B-Instruct`
-- pruned schema prompting
-- RapidFire SFT
-- LoRA rank `16`, alpha `16`, dropout `0.05`
-- learning rate `2e-4`
-- 4 epochs
-- completion-only loss
-- database-balanced upsampling with target `12`
+| Item | Value |
+|---|---|
+| Base model | `Qwen/Qwen2.5-Coder-1.5B-Instruct` |
+| Adapter | LoRA, rank 16, alpha 32, dropout 0.05 |
+| Training | completion-only SFT, 7 epochs, lr `8.5e-5` |
+| Data | 301 train rows, upsampled to 349 rows with database target 12 |
+| Context | pruned schema, up to 14 tables and 320 columns |
+| Decoding | greedy generation, schema filtering |
 
-The database balancing step repeats examples from small databases until each
-database has at least 12 training rows. It does not downsample larger
-databases.
+Validation score:
 
-## Best Validation Result
+| Metric | Score |
+|---|---:|
+| Overall | 0.6869 |
+| Table | 0.7753 |
+| Column | 0.5985 |
 
-```text
-Leaderboard score: 0.6536
-Table score:       0.7254
-Column score:      0.5819
-```
+## Training
 
-The best adapter path used locally was:
-
-```text
-rapidfire_experiments/project2_qwen25_15b_sft_pruned_dbbal12_r16a16_ep4_len6144/runs/2/checkpoints/final_checkpoint
-```
-
-The checkpoint is not committed in this repository.
-
-## Important Files
-
-```text
-main.py                  inference entry point
-balanced_pruned_sft.py   final training script
-pruned_sft.py            schema pruning and SFT utilities
-sft.py                   shared SFT utilities
-eval.py                  validation scoring script
-schemas/                 database schemas
-train.json               training data
-validation_input.json    validation questions
-validation_gold_schema_links.json
-EXPERIMENTS.md           experiment notes and scores
-```
-
-## Training Command
+The final training script is `coder_balanced_pruned_sft.py`.
 
 ```bash
-python balanced_pruned_sft.py train \
-  --run_name sft_pruned_dbbal12_lr2e-4_r16_a16_ep4_len6144 \
-  --experiment_name project2_qwen25_15b_sft_pruned_dbbal12_r16a16_ep4_len6144 \
-  --max_length 6144 \
-  --prompt_keep_head_tokens 800 \
-  --top_tables 14 \
-  --max_schema_columns 320 \
-  --max_columns_per_table 48 \
-  --db_balance_target 12 \
-  --learning_rates 0.0002 \
-  --lora_ranks 16 \
-  --lora_alphas 16 \
-  --lora_dropout 0.05 \
-  --epochs 4 \
-  --completion_only_loss
+python3 coder_balanced_pruned_sft.py train \
+  --run_name sft_pruned_coder_dbbal12_lr8p5e-5_r16_a32_ep7_len8192 \
+  --experiment_name project2_qwen25_coder15b_sft_pruned_dbbal12_lr8p5e5_r16a32_ep7_len8192 \
+  --learning_rates 0.000085 \
+  --epochs 7
 ```
 
-More experiment details are in `EXPERIMENTS.md`.
+Representative experiment results are summarized in `EXPERIMENTS.md`; raw logs
+are under `logs/`.

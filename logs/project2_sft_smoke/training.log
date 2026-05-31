@@ -1,0 +1,11 @@
+2026-05-20 03:21:25 | project2_sft_smoke | worker_0 | INFO | worker.py:644 | {'loss': 1.6678, 'grad_norm': 2.3408524990081787, 'learning_rate': 0.0, 'entropy': 1.1918368339538574, 'num_tokens': 1024.0, 'mean_token_accuracy': 0.7116324305534363, 'epoch': 0.5}
+{'eval_loss': 2.9896352291107178, 'eval_runtime': 0.1758, 'eval_samples_per_second': 5.687, 'eval_steps_per_second': 5.687, 'eval_entropy': 2.450012445449829, 'eval_num_tokens': 1024.0, 'eval_mean_token_accuracy': 0.4838709533214569, 'epoch': 0.5}
+{'train_runtime': 1.8696, 'train_samples_per_second': 0.535, 'train_steps_per_second': 0.535, 'train_loss': 1.6678293943405151, 'epoch': 0.5}
+
+2026-05-20 03:21:25 | project2_sft_smoke | worker_0 | ERROR | worker.py:646 | Adding EOS to train dataset:   0%|          | 0/2 [00:00<?, ? examples/s]Adding EOS to train dataset: 100%|██████████| 2/2 [00:00<00:00, 208.84 examples/s]
+Tokenizing train dataset:   0%|          | 0/2 [00:00<?, ? examples/s]Tokenizing train dataset: 100%|██████████| 2/2 [00:00<00:00, 122.82 examples/s]
+Adding EOS to eval dataset:   0%|          | 0/1 [00:00<?, ? examples/s]Adding EOS to eval dataset: 100%|██████████| 1/1 [00:00<00:00, 678.36 examples/s]
+Tokenizing eval dataset:   0%|          | 0/1 [00:00<?, ? examples/s]Tokenizing eval dataset: 100%|██████████| 1/1 [00:00<00:00, 142.22 examples/s]
+/home/fey006/.conda/envs/rapidfire/lib/python3.12/site-packages/transformers/trainer.py:2750: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  self.lr_scheduler.step()
+

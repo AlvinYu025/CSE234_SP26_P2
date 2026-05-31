@@ -11,7 +11,7 @@ import pruned_sft
 
 
 ROOT = Path(__file__).resolve().parent
-_BASE_PRUNE_SCHEMA = pruned_sft.prune_schema
+_BASE_PRUNE_SCHEMA = pruned_sft.pruneSchema
 _CURATION: argparse.Namespace | None = None
 
 
@@ -158,7 +158,7 @@ def curatedPruneSchema(
 
 
 def buildParser() -> argparse.ArgumentParser:
-    parser = pruned_sft.build_arg_parser()
+    parser = pruned_sft.buildArgParser()
     for command in ("prepare", "train", "predict"):
         sp = parser._subparsers._group_actions[0].choices[command]
         sp.add_argument("--table_column_floor", type=int, default=0)
@@ -174,18 +174,18 @@ def main() -> None:
     global _CURATION
     args = buildParser().parse_args()
     _CURATION = args
-    pruned_sft.prune_schema = curatedPruneSchema
+    pruned_sft.pruneSchema = curatedPruneSchema
     if args.command in {"prepare", "train"}:
-        args.learning_rates = pruned_sft.parse_csv_numbers(args.learning_rates, float)
-        args.lora_ranks = pruned_sft.parse_csv_numbers(args.lora_ranks, int)
-        args.lora_alphas = pruned_sft.parse_csv_numbers(args.lora_alphas, int)
+        args.learning_rates = pruned_sft.parseCsvNumbers(args.learning_rates, float)
+        args.lora_ranks = pruned_sft.parseCsvNumbers(args.lora_ranks, int)
+        args.lora_alphas = pruned_sft.parseCsvNumbers(args.lora_alphas, int)
         if args.command == "prepare":
-            paths = pruned_sft.prepare_data(args)
+            paths = pruned_sft.prepareData(args)
             print(f"Wrote curated train data to {paths['train_jsonl']}")
             print(f"Wrote curated eval data to {paths['eval_jsonl']}")
             print(f"Wrote manifest to {paths['manifest']}")
         else:
-            pruned_sft.run_train(args)
+            pruned_sft.runTrain(args)
     else:
         pruned_sft.predict(args)
 

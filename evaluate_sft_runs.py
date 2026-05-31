@@ -39,7 +39,7 @@ def slugify(value: str) -> str:
     return slug or "run"
 
 
-def compact_float(value: Any) -> str:
+def compactFloat(value: Any) -> str:
     if isinstance(value, str):
         try:
             value = float(value)
@@ -51,7 +51,7 @@ def compact_float(value: Any) -> str:
     return str(value)
 
 
-def read_runs_info(path: Path) -> list[dict[str, Any]]:
+def readRunsInfo(path: Path) -> list[dict[str, Any]]:
     rows = []
     with path.open() as f:
         for row in csv.DictReader(f):
@@ -64,38 +64,38 @@ def read_runs_info(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
-def is_completed(row: dict[str, Any]) -> bool:
+def isCompleted(row: dict[str, Any]) -> bool:
     return row.get("status") in {"RunStatus.COMPLETED", "COMPLETED", "completed"}
 
 
-def json_safe(value: Any) -> Any:
+def jsonSafe(value: Any) -> Any:
     if isinstance(value, set):
-        return sorted(json_safe(item) for item in value)
+        return sorted(jsonSafe(item) for item in value)
     if isinstance(value, tuple):
-        return [json_safe(item) for item in value]
+        return [jsonSafe(item) for item in value]
     if isinstance(value, list):
-        return [json_safe(item) for item in value]
+        return [jsonSafe(item) for item in value]
     if isinstance(value, dict):
-        return {str(key): json_safe(item) for key, item in value.items()}
+        return {str(key): jsonSafe(item) for key, item in value.items()}
     return value
 
 
-def config_slug(row: dict[str, Any]) -> str:
+def configSlug(row: dict[str, Any]) -> str:
     config = row.get("config_obj", {})
     training = config.get("training_args", {})
     peft = config.get("peft_params", {})
     epochs = training.get("num_train_epochs") or row.get("num_epochs_completed")
     prefix = "sft_completion" if training.get("completion_only_loss") is True else "sft"
     return (
-        f"{prefix}_lr{compact_float(training.get('learning_rate'))}"
+        f"{prefix}_lr{compactFloat(training.get('learning_rate'))}"
         f"_r{peft.get('r')}"
         f"_a{peft.get('lora_alpha')}"
-        f"_ep{compact_float(epochs)}"
+        f"_ep{compactFloat(epochs)}"
         f"_len{training.get('max_length')}"
     )
 
 
-def load_model_and_tokenizer(args: argparse.Namespace, adapter_path: Path):
+def loadModelAndTokenizer(args: argparse.Namespace, adapter_path: Path):
     import torch
     from peft import PeftModel
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -134,9 +134,9 @@ def load_model_and_tokenizer(args: argparse.Namespace, adapter_path: Path):
     return model, tokenizer, device, torch
 
 
-def predict_file(args: argparse.Namespace, adapter_path: Path, output_dir: Path) -> Path:
-    model, tokenizer, device, torch = load_model_and_tokenizer(args, adapter_path)
-    items = baseline.read_json(args.input)
+def predictFile(args: argparse.Namespace, adapter_path: Path, output_dir: Path) -> Path:
+    model, tokenizer, device, torch = loadModelAndTokenizer(args, adapter_path)
+    items = baseline.readJson(args.input)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     predictions_path = output_dir / "predictions.json"
@@ -149,16 +149,16 @@ def predict_file(args: argparse.Namespace, adapter_path: Path, output_dir: Path)
     for idx, item in enumerate(items, start=1):
         db_id = item["db_id"]
         if db_id not in schema_cache:
-            schema_cache[db_id] = baseline.load_schema(args.schemas_dir, db_id)
+            schema_cache[db_id] = baseline.loadSchema(args.schemas_dir, db_id)
         schema = schema_cache[db_id]
 
-        schema_text = baseline.serialize_schema(schema, include_types=args.include_types)
-        system, user = baseline.build_prompt(item.get("question", ""), schema_text)
-        prompt = baseline.apply_chat_template(tokenizer, system, user)
-        raw_text = baseline.generate_one(model, tokenizer, device, torch, prompt, args)
+        schema_text = baseline.serializeSchema(schema, include_types=args.include_types)
+        system, user = baseline.buildPrompt(item.get("question", ""), schema_text)
+        prompt = baseline.applyChatTemplate(tokenizer, system, user)
+        raw_text = baseline.generateOne(model, tokenizer, device, torch, prompt, args)
 
-        raw_links = baseline.try_parse_mapping(raw_text)
-        links = baseline.filter_schema_links(raw_links, schema)
+        raw_links = baseline.tryParseMapping(raw_text)
+        links = baseline.filterSchemaLinks(raw_links, schema)
         predictions.append(
             {
                 "question_id": item["question_id"],
@@ -177,13 +177,13 @@ def predict_file(args: argparse.Namespace, adapter_path: Path, output_dir: Path)
         print(f"[{idx}/{len(items)}] {output_dir.name} q{item['question_id']} {db_id}", file=sys.stderr)
 
     with predictions_path.open("w") as f:
-        json.dump(json_safe(predictions), f, indent=2)
+        json.dump(jsonSafe(predictions), f, indent=2)
     with raw_path.open("w") as f:
-        json.dump(json_safe(raw_rows), f, indent=2)
+        json.dump(jsonSafe(raw_rows), f, indent=2)
     return predictions_path
 
 
-def run_eval(args: argparse.Namespace, predictions_path: Path, output_dir: Path) -> dict[str, Any]:
+def runEval(args: argparse.Namespace, predictions_path: Path, output_dir: Path) -> dict[str, Any]:
     per_question = output_dir / "per_question.csv"
     cmd = [
         sys.executable,
@@ -244,8 +244,8 @@ def main() -> None:
     args = ap.parse_args()
 
     model_slug = slugify(args.base_model)
-    rows = read_runs_info(Path(args.runs_info))
-    completed = [row for row in rows if is_completed(row)]
+    rows = readRunsInfo(Path(args.runs_info))
+    completed = [row for row in rows if isCompleted(row)]
     if args.only_run_id is not None:
         completed = [row for row in completed if row.get("run_id") == str(args.only_run_id)]
 
@@ -260,10 +260,10 @@ def main() -> None:
             print(f"Skipping run {run_id}: adapter not found at {adapter_path}", file=sys.stderr)
             continue
 
-        name = config_slug(row)
+        name = configSlug(row)
         output_dir = ROOT / args.output_root / model_slug / name
-        predictions_path = predict_file(args, adapter_path, output_dir)
-        score = run_eval(args, predictions_path, output_dir)
+        predictions_path = predictFile(args, adapter_path, output_dir)
+        score = runEval(args, predictions_path, output_dir)
         config = row.get("config_obj", {})
         training = config.get("training_args", {})
         peft = config.get("peft_params", {})

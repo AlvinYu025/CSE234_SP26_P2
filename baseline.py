@@ -39,7 +39,7 @@ import sys
 DEFAULT_MODEL = "Qwen/Qwen2.5-0.5B-Instruct"
 
 
-def read_json(path):
+def readJson(path):
     with open(path) as f:
         return json.load(f)
 
@@ -50,7 +50,7 @@ def slugify(value):
     return slug or "run"
 
 
-def resolve_output_paths(args):
+def resolveOutputPaths(args):
     model_slug = slugify(args.model_name)
     run_name = slugify(args.run_name)
     run_dir = os.path.join(args.output_root, model_slug, run_name)
@@ -69,13 +69,13 @@ def resolve_output_paths(args):
     return run_dir, output_path, raw_path, config_path
 
 
-def schema_filename(db_id):
+def schemaFilename(db_id):
     return db_id.replace(" ", "_").replace("/", "_") + ".json"
 
 
-def load_schema(schemas_dir, db_id):
-    path = os.path.join(schemas_dir, schema_filename(db_id))
-    data = read_json(path)
+def loadSchema(schemas_dir, db_id):
+    path = os.path.join(schemas_dir, schemaFilename(db_id))
+    data = readJson(path)
 
     tables = list(data["table_names_original"])
     columns_by_table = {table: [] for table in tables}
@@ -97,7 +97,7 @@ def load_schema(schemas_dir, db_id):
     }
 
 
-def serialize_schema(schema, include_types=False):
+def serializeSchema(schema, include_types=False):
     lines = [f"Database: {schema['db_id']}", "Schema:"]
     for table in schema["tables"]:
         if table.lower() == "sysdiagrams":
@@ -114,7 +114,7 @@ def serialize_schema(schema, include_types=False):
     return "\n".join(lines)
 
 
-def build_prompt(question, schema_text):
+def buildPrompt(question, schema_text):
     system = (
         "You are a schema-linking model. Given a natural-language question and "
         "a database schema, identify exactly which schema tables and columns "
@@ -143,7 +143,7 @@ Question:
     return system, user
 
 
-def apply_chat_template(tokenizer, system, user):
+def applyChatTemplate(tokenizer, system, user):
     messages = [
         {"role": "system", "content": system},
         {"role": "user", "content": user},
@@ -165,14 +165,14 @@ def apply_chat_template(tokenizer, system, user):
     return f"System:\n{system}\n\nUser:\n{user}\n\nAssistant:\n"
 
 
-def strip_code_fences(text):
+def stripCodeFences(text):
     match = re.search(r"```(?:json)?\s*(.*?)```", text, flags=re.IGNORECASE | re.DOTALL)
     if match:
         return match.group(1).strip()
     return text.strip()
 
 
-def extract_balanced_json_object(text):
+def extractBalancedJsonObject(text):
     start = text.find("{")
     if start == -1:
         return None
@@ -204,12 +204,12 @@ def extract_balanced_json_object(text):
     return None
 
 
-def try_parse_mapping(text):
+def tryParseMapping(text):
     candidates = []
-    cleaned = strip_code_fences(text)
+    cleaned = stripCodeFences(text)
     candidates.append(cleaned)
 
-    balanced = extract_balanced_json_object(cleaned)
+    balanced = extractBalancedJsonObject(cleaned)
     if balanced:
         candidates.append(balanced)
 
@@ -239,7 +239,7 @@ def try_parse_mapping(text):
     return {}
 
 
-def normalize_column_list(cols):
+def normalizeColumnList(cols):
     if isinstance(cols, list):
         return cols
     if isinstance(cols, tuple):
@@ -249,7 +249,7 @@ def normalize_column_list(cols):
     return []
 
 
-def filter_schema_links(raw_links, schema):
+def filterSchemaLinks(raw_links, schema):
     if not isinstance(raw_links, dict):
         return {}
 
@@ -271,7 +271,7 @@ def filter_schema_links(raw_links, schema):
 
         cols = []
         seen = set()
-        for raw_col in normalize_column_list(raw_cols):
+        for raw_col in normalizeColumnList(raw_cols):
             col_key = str(raw_col).lower()
             if col_key in column_lookup[table]:
                 col = column_lookup[table][col_key]
@@ -296,7 +296,7 @@ def filter_schema_links(raw_links, schema):
     return out
 
 
-def load_model_and_tokenizer(args):
+def loadModelAndTokenizer(args):
     try:
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -343,7 +343,7 @@ def load_model_and_tokenizer(args):
     return model, tokenizer, device, torch
 
 
-def generate_one(model, tokenizer, device, torch, prompt, args):
+def generateOne(model, tokenizer, device, torch, prompt, args):
     encoded = tokenizer(
         prompt,
         return_tensors="pt",
@@ -385,17 +385,17 @@ def main():
     ap.add_argument("--no_raw_generations", action="store_true")
     args = ap.parse_args()
 
-    run_dir, output_path, raw_path, config_path = resolve_output_paths(args)
+    run_dir, output_path, raw_path, config_path = resolveOutputPaths(args)
     os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
     if raw_path:
         os.makedirs(os.path.dirname(raw_path) or ".", exist_ok=True)
     os.makedirs(os.path.dirname(config_path) or ".", exist_ok=True)
 
-    items = read_json(args.input)
+    items = readJson(args.input)
     if not isinstance(items, list):
         raise ValueError("--input must be a JSON list")
 
-    model, tokenizer, device, torch = load_model_and_tokenizer(args)
+    model, tokenizer, device, torch = loadModelAndTokenizer(args)
 
     schema_cache = {}
     predictions = []
@@ -404,16 +404,16 @@ def main():
     for idx, item in enumerate(items, start=1):
         db_id = item["db_id"]
         if db_id not in schema_cache:
-            schema_cache[db_id] = load_schema(args.schemas_dir, db_id)
+            schema_cache[db_id] = loadSchema(args.schemas_dir, db_id)
         schema = schema_cache[db_id]
 
-        schema_text = serialize_schema(schema, include_types=args.include_types)
-        system, user = build_prompt(item.get("question", ""), schema_text)
-        prompt = apply_chat_template(tokenizer, system, user)
-        raw_text = generate_one(model, tokenizer, device, torch, prompt, args)
+        schema_text = serializeSchema(schema, include_types=args.include_types)
+        system, user = buildPrompt(item.get("question", ""), schema_text)
+        prompt = applyChatTemplate(tokenizer, system, user)
+        raw_text = generateOne(model, tokenizer, device, torch, prompt, args)
 
-        raw_links = try_parse_mapping(raw_text)
-        links = filter_schema_links(raw_links, schema)
+        raw_links = tryParseMapping(raw_text)
+        links = filterSchemaLinks(raw_links, schema)
         predictions.append({
             "question_id": item["question_id"],
             "schema_links": links,

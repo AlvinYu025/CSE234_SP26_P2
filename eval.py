@@ -78,12 +78,12 @@ import os
 from collections import defaultdict
 
 
-def load_json(path):
+def loadJson(path):
     with open(path) as f:
         return json.load(f)
 
 
-def load_schema_caseinsensitive(schemas_dir, db_id):
+def loadSchemaCaseInsensitive(schemas_dir, db_id):
     """Load a Spider-format schema and return:
         lc_tables : {lowercase_table -> original_table}
         lc_cols   : {original_table -> {lowercase_col -> original_col}}
@@ -104,7 +104,7 @@ def load_schema_caseinsensitive(schemas_dir, db_id):
     return lc_tables, dict(lc_cols)
 
 
-def canonicalize_links(links, lc_tables, lc_cols, is_gold=False):
+def canonicalizeLinks(links, lc_tables, lc_cols, is_gold=False):
     """Convert a {table: [cols]} dict to (table_set, table_col_pair_set) of
     identifiers for set-based metric computation.
 
@@ -190,7 +190,7 @@ def main():
     ap.add_argument('--per_question_out', default=None, help='Optional CSV of per-question metrics')
     args = ap.parse_args()
 
-    raw_preds = load_json(args.predictions)
+    raw_preds = loadJson(args.predictions)
     if not isinstance(raw_preds, list):
         print(f"ERROR: predictions file must be a JSON list, got {type(raw_preds).__name__}")
         return
@@ -206,8 +206,8 @@ def main():
     if dup_qids:
         print(f"WARN  predictions contain {len(dup_qids)} duplicate question_id(s) (last one wins): {dup_qids[:10]}")
 
-    gold  = {g['question_id']: g['schema_links']         for g in load_json(args.gold)}
-    questions = {q['question_id']: q for q in load_json(args.questions_input)}
+    gold  = {g['question_id']: g['schema_links']         for g in loadJson(args.gold)}
+    questions = {q['question_id']: q for q in loadJson(args.questions_input)}
 
     extra_qids = set(preds) - set(questions)
     if extra_qids:
@@ -222,7 +222,7 @@ def main():
     for qid, qmeta in sorted(questions.items()):
         db_id = qmeta['db_id']
         try:
-            lc_tables, lc_cols = load_schema_caseinsensitive(args.schemas_dir, db_id)
+            lc_tables, lc_cols = loadSchemaCaseInsensitive(args.schemas_dir, db_id)
         except FileNotFoundError:
             print(f"WARN  q{qid}: schema file not found for db_id {db_id!r}; skipping")
             continue
@@ -233,11 +233,11 @@ def main():
             missing_predictions += 1
             pred_tables, pred_pairs, _bad = set(), set(), {'bad_tables': 0, 'bad_columns': 0}
         else:
-            pred_tables, pred_pairs, bad = canonicalize_links(preds[qid], lc_tables, lc_cols, is_gold=False)
+            pred_tables, pred_pairs, bad = canonicalizeLinks(preds[qid], lc_tables, lc_cols, is_gold=False)
             hallucinations['bad_tables']  += bad['bad_tables']
             hallucinations['bad_columns'] += bad['bad_columns']
 
-        gold_tables, gold_pairs, _ = canonicalize_links(gold[qid], lc_tables, lc_cols, is_gold=True)
+        gold_tables, gold_pairs, _ = canonicalizeLinks(gold[qid], lc_tables, lc_cols, is_gold=True)
         p_t, r_t, f1_t = prf(pred_tables, gold_tables)
         p_c, r_c, f1_c = prf(pred_pairs,  gold_pairs)
         rows.append({
