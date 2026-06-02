@@ -1,6 +1,6 @@
 # CSE/DSC 234 Project 2
 
-Team 52
+Team 51
 
 This project builds a local schema-linking model. Given a question and a
 database schema, `main.py` predicts the tables and columns that the SQL answer
