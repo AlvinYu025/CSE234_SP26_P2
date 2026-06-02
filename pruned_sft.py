@@ -120,11 +120,21 @@ def readJson(path: str | Path) -> Any:
         return json.load(f)
 
 
+def jsonReady(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {key: jsonReady(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [jsonReady(item) for item in value]
+    if isinstance(value, set):
+        return sorted(jsonReady(item) for item in value)
+    return value
+
+
 def writeJson(path: str | Path, payload: Any) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w") as f:
-        json.dump(payload, f, indent=2)
+        json.dump(jsonReady(payload), f, indent=2)
 
 
 def singularize(token: str) -> str:
@@ -470,7 +480,7 @@ def runTrain(args: argparse.Namespace) -> None:
     )
     experiment.run_fit(
         param_config=param_config,
-        createModelFn=sft.createModelFn,
+        create_model_fn=sft.createModelFn,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         num_chunks=args.num_chunks,

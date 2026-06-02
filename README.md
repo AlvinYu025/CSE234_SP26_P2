@@ -1,10 +1,10 @@
 # CSE/DSC 234 Project 2
 
-Schema linking for natural-language questions over database schemas.
+Team 52
 
-The submitted inference path is `main.py`. It loads a public Qwen2.5-Coder
-1.5B base model, attaches the local LoRA adapter in `adapter/`, prunes the
-schema prompt, generates JSON, and filters identifiers against the schema.
+This project builds a local schema-linking model. Given a question and a
+database schema, `main.py` predicts the tables and columns that the SQL answer
+would reference.
 
 ## Run
 
@@ -12,7 +12,7 @@ schema prompt, generates JSON, and filters identifiers against the schema.
 python3 main.py --input validation_input.json --output predictions.json
 ```
 
-Optional local scoring:
+For local validation:
 
 ```bash
 python3 main.py \
@@ -21,48 +21,50 @@ python3 main.py \
   --gold validation_gold_schema_links.json
 ```
 
-`main.py` expects schemas at `./schemas/` and loads `./adapter/` by default.
-The base model is downloaded through `transformers`; the adapter is committed
-in this repo.
+`main.py` expects `schemas/` and `adapter/` at the repository root. The public
+base model is loaded from Hugging Face, and the local LoRA adapter is loaded
+from `adapter/`.
 
-## Output Format
+## What `main.py` Does
 
-```json
-[
-  {
-    "question_id": 1,
-    "schema_links": {
-      "TableName": ["ColumnName"]
-    }
-  }
-]
-```
+`main.py` runs the final inference pipeline end to end:
 
-If a table is referenced without a specific column, it is emitted with an empty
-list.
+1. Load `Qwen/Qwen2.5-Coder-1.5B-Instruct` with the local LoRA adapter in
+   `adapter/`.
+2. Build pruned schema prompts for each input question using the schema files
+   in `schemas/`.
+3. Generate four predictions from the same adapter with default, wide,
+   all-columns, and recall-oriented schema views.
+4. Vote over the four predictions, parse the JSON, remove duplicate links, and
+   filter table and column names against the target schema.
 
-## Final Setting
+## Final Pipeline
 
-| Item | Value |
+| Item | Setting |
 |---|---|
 | Base model | `Qwen/Qwen2.5-Coder-1.5B-Instruct` |
 | Adapter | LoRA, rank 16, alpha 32, dropout 0.05 |
-| Training | completion-only SFT, 7 epochs, lr `8.5e-5` |
-| Data | 301 train rows, upsampled to 349 rows with database target 12 |
-| Context | pruned schema, up to 14 tables and 320 columns |
-| Decoding | greedy generation, schema filtering |
+| Training | completion-only SFT, 7 epochs, learning rate `8.5e-5` |
+| Data | 301 released rows, upsampled to 349 rows with database target 12 |
+| Inference | one adapter, four schema views, deterministic voting |
+| Output cleanup | JSON parsing, duplicate removal, schema identifier filtering |
 
-Validation score:
+The final inference step uses the same adapter with four views of the schema:
+default, wide, all-columns, and recall-oriented. Tables are kept if they appear
+in any of the first three views. Columns are kept only when at least two views
+agree and the table passed the table vote.
+
+Validation result for the final submitted pipeline:
 
 | Metric | Score |
 |---|---:|
-| Overall | 0.6869 |
-| Table | 0.7753 |
-| Column | 0.5985 |
+| Overall | 0.7150 |
+| Table | 0.7869 |
+| Column | 0.6431 |
 
 ## Training
 
-The final training script is `coder_balanced_pruned_sft.py`.
+The main training script is `coder_balanced_pruned_sft.py`.
 
 ```bash
 python3 coder_balanced_pruned_sft.py train \
@@ -72,5 +74,11 @@ python3 coder_balanced_pruned_sft.py train \
   --epochs 7
 ```
 
-Representative experiment results are summarized in `EXPERIMENTS.md`; raw logs
-are under `logs/`.
+Representative validation experiments are summarized in `EXPERIMENTS.md`.
+RapidFire logs are under `logs/`.
+
+## AI Tools
+
+AI tools were used for code inspection, debugging help, command organization,
+and summarizing results from experiment runs. The adapter, predictions, and
+reported scores come from local runs with the released evaluator.

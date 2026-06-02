@@ -8,5 +8,6 @@ output/
 rapidfire_experiments/
 rapidfireai_sft/
 rapidfire_trainer_output/
+adapters/
 
 .DS_Store

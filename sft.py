@@ -615,7 +615,7 @@ def runRapidfire(args: argparse.Namespace) -> dict[str, Path]:
     )
     experiment.run_fit(
         param_config=param_config,
-        createModelFn=createModelFn,
+        create_model_fn=createModelFn,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         num_chunks=args.num_chunks,

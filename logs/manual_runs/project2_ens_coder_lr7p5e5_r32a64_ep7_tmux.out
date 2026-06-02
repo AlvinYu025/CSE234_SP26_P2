@@ -1,0 +1,6 @@
+Task Training and Validation cancelled
+The previously running experiment project2_ens_coder_lr7p5e5_r32a64_ep7_retry was forcibly ended. Created a new experiment 'project2_ens_coder_lr7p5e5_r32a64_ep7_tmux' with Experiment ID: 41 and Metric Experiment ID: project2_ens_coder_lr7p5e5_r32a64_ep7_tmux at /home/fey006/Project2/rapidfire_experiments/project2_ens_coder_lr7p5e5_r32a64_ep7_tmux
+Started 1 worker processes successfully
+Created workers
+RapidFire experiment directory: /home/fey006/Project2/rapidfire_experiments/project2_ens_coder_lr7p5e5_r32a64_ep7_tmux
+Run metadata directory: /home/fey006/Project2/output/qwen-qwen2.5-coder-1.5b-instruct/ensemble_coder_lr7p5e-5_r32_a64_ep7_len8192
