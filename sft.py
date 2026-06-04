@@ -589,11 +589,18 @@ def summarizeRuns(param_config: Any, seed: int) -> list[dict[str, Any]]:
 def loadDatasetFromJsonl(path: Path) -> Any:
     from datasets import Dataset
 
+    # Keep only the string columns the SFT trainer consumes. The mixed-task rows
+    # carry a "target" metadata column that is a dict for most tasks but a plain
+    # string ("yes"/"no") for the verify task; passing that to Arrow makes
+    # Dataset.from_list fail to unify the column type. prompt/completion/text are
+    # all strings and are all the trainer needs (completion_only_loss masking).
+    keep = ("prompt", "completion", "text")
     rows = []
     with path.open() as f:
         for line in f:
             if line.strip():
-                rows.append(json.loads(line))
+                row = json.loads(line)
+                rows.append({k: row[k] for k in keep if k in row})
     return Dataset.from_list(rows)
 
 

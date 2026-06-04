@@ -64,6 +64,13 @@ def createModel(configLeaf: dict[str, Any]) -> tuple[Any, Any]:
         model = prepare_model_for_kbit_training(model)
     if getattr(model.config, "use_cache", None) is not None:
         model.config.use_cache = False
+    # With gradient_checkpointing=True on recent transformers, gradients do not
+    # reach the LoRA adapters unless the input embeddings are made to require
+    # grad (otherwise grad_norm stays 0.0 and lora_B never moves off its zero
+    # init -> the adapter trains to a no-op). This explicit call replicates the
+    # behaviour older TRL versions applied automatically.
+    if hasattr(model, "enable_input_require_grads"):
+        model.enable_input_require_grads()
     return model, tokenizer
 
 

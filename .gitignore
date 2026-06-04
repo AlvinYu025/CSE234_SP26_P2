@@ -11,3 +11,19 @@ rapidfire_trainer_output/
 adapters/
 
 .DS_Store
+
+# local conda env (do not commit — large)
+envs/
+# scratch logs from the tuning runs
+acc.log
+err_fast.log
+*.nohup
+adapters_direct/
+
+# local safety backups (not part of submission)
+adapter_backup_viewvote/
+main_backup_viewvote.py
+
+# submission bundle (built artifact, not source)
+Team51/
+Team51.zip
