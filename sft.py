@@ -456,7 +456,7 @@ def requireSftDependencies() -> None:
             "Missing RapidFire SFT dependencies in this environment: "
             f"{', '.join(missing)}.\n"
             "Install them in the rapidfire env with:\n"
-            f"  /home/fey006/.conda/envs/rapidfire/bin/python -m pip install {packages}"
+            f"  python -m pip install {packages}"
         )
 
 

@@ -78,8 +78,7 @@ Validation result for the submitted pipeline (~2.5 min for 101 questions):
 | Table | 0.8043 |
 | Column | 0.6587 |
 
-The previous 0.7150 view-vote pipeline is preserved as `main_backup_viewvote.py`
-and `adapter_backup_viewvote/`.
+The earlier 0.7150 view-vote result is summarized in `EXPERIMENTS.md`.
 
 ## Training
 
@@ -108,3 +107,8 @@ experiments are summarized in `EXPERIMENTS.md`.
 AI tools were used for code inspection, debugging help, command organization,
 and summarizing results from experiment runs. The adapter, predictions, and
 reported scores come from local runs with the released evaluator.
+
+## Generated Artifacts
+
+Generated training data, logs, and per-run output directories are excluded
+because they can be reproduced from the retained scripts and source files.

@@ -25,8 +25,7 @@ Column:      0.6587
 ```
 
 The packaged single-adapter "mixed" pipeline scores 0.7315, above the earlier
-0.7150 view-vote submission (kept as `main_backup_viewvote.py` /
-`adapter_backup_viewvote/`). The multi-task adapter raises the table score to
+0.7150 view-vote submission. The multi-task adapter raises the table score to
 0.80 while `column_threshold=2` raises column precision; the per-column verifier
 was found to over-prune and is disabled.
 

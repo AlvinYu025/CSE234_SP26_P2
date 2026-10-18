@@ -1,5 +1,0 @@
-The previously running experiment project2_ens_coder_lr1e4_r16a32_ep5_tmux was forcibly ended. Created a new experiment 'project2_ens_coder_lr1e4_r16a32_do010_ep6_tmux' with Experiment ID: 43 and Metric Experiment ID: project2_ens_coder_lr1e4_r16a32_do010_ep6_tmux at /home/fey006/Project2/rapidfire_experiments/project2_ens_coder_lr1e4_r16a32_do010_ep6_tmux
-Started 1 worker processes successfully
-Created workers
-RapidFire experiment directory: /home/fey006/Project2/rapidfire_experiments/project2_ens_coder_lr1e4_r16a32_do010_ep6_tmux
-Run metadata directory: /home/fey006/Project2/output/qwen-qwen2.5-coder-1.5b-instruct/ensemble_coder_lr1e-4_r16_a32_do010_ep6_len8192

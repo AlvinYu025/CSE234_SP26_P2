@@ -1,5 +1,0 @@
-The previously running experiment project2_deepseek_coder13b_sft_pruned_dbbal12_lr8p5e5_r16a32_ep7_len8192 was forcibly ended. Created a new experiment 'project2_deepseek_coder13b_sft_pruned_dbbal12_lr8p5e5_r16a32_ep2_len8192' with Experiment ID: 38 and Metric Experiment ID: project2_deepseek_coder13b_sft_pruned_dbbal12_lr8p5e5_r16a32_ep2_len8192 at /home/fey006/Project2/rapidfire_experiments/project2_deepseek_coder13b_sft_pruned_dbbal12_lr8p5e5_r16a32_ep2_len8192
-Started 1 worker processes successfully
-Created workers
-RapidFire experiment directory: /home/fey006/Project2/rapidfire_experiments/project2_deepseek_coder13b_sft_pruned_dbbal12_lr8p5e5_r16a32_ep2_len8192
-Run metadata directory: /home/fey006/Project2/output/deepseek-ai-deepseek-coder-1.3b-instruct/sft_pruned_deepseek_coder13b_dbbal12_lr8p5e-5_r16_a32_ep2_len8192

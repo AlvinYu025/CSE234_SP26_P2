@@ -1,5 +1,0 @@
-The previously running experiment project2_ens_seed7_lr8p5e5_r16a32_ep7_cse234_tmux was forcibly ended. Created a new experiment 'project2_ens_seed123_lr8p5e5_r16a32_ep7_cse234_tmux' with Experiment ID: 47 and Metric Experiment ID: project2_ens_seed123_lr8p5e5_r16a32_ep7_cse234_tmux at /home/fey006/Project2/rapidfire_experiments/project2_ens_seed123_lr8p5e5_r16a32_ep7_cse234_tmux
-Started 1 worker processes successfully
-Created workers
-RapidFire experiment directory: /home/fey006/Project2/rapidfire_experiments/project2_ens_seed123_lr8p5e5_r16a32_ep7_cse234_tmux
-Run metadata directory: /home/fey006/Project2/output/qwen-qwen2.5-coder-1.5b-instruct/ensemble_seed123_lr8p5e-5_r16_a32_ep7_len8192
